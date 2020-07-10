@@ -1,0 +1,32 @@
+{
+    "name": "bid",
+    "version": "1.0.5",
+    "description": "webpack plugin",
+    "main": "lib/index.js",
+    "scripts": {
+        "delete": "rm -rf lib && rm -rf dist",
+        "build": "npm run delete && npx babel ./src/* --out-dir lib",
+        "tag": "npm run build && npm publish ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/purple97/bid.git"
+    },
+    "keywords": [
+        "webpack"
+    ],
+    "author": "dezhao.chen",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/purple97/bid/issues"
+    },
+    "homepage": "https://github.com/purple97/bid#readme",
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/cli": "^7.4.3",
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.4.4"
+    }
+}
