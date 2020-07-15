@@ -1,6 +1,5 @@
-const obj = { a: 1, b: 2, c: 3, d: 4 };
-export const test = () => {
-    console.log({ ...obj, a: 10 });
-};
-
-export default () => obj;
+export { default as Utils } from './utils/index';
+export { default as getIp } from './utils/getip';
+export { default as LessToCss } from './actions/less-to-css';
+export { default as InitProject } from './actions/init';
+export { default as Lint } from './actions/lint';
