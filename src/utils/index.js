@@ -7,6 +7,7 @@ import getBuildInfo from './get-build-info';
 import getUserConfig from './get-config-json';
 import setConfigFileVersion from './set-config-flie-version';
 import projectGenerator from './project-generator';
+import requireFileToJSON from './require-file-to-json';
 
 class Utils {
     constructor() {
@@ -20,6 +21,7 @@ class Utils {
         };
         this.git = setConfigFileVersion(this.userConfig);
         this.git.repo = new Repo(process.cwd());
+        this.requireFileToJSON = requireFileToJSON;
     }
     get path() {
         return {
