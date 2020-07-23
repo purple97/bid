@@ -1,4 +1,11 @@
-export { default as GetCatalog } from './get-catalog';
-export { default as CssFile } from './css-file';
-export { default as CheckPathInHtml } from './chack-path-in-html';
-export { default as Redirect } from './redirect-js';
+import GetCatalog from './get-catalog';
+import CssFile from './css-file';
+import CheckPathInHtml from './chack-path-in-html';
+import Redirect from './redirect-js';
+
+export default {
+    CssFile,
+    Redirect,
+    GetCatalog,
+    CheckPathInHtml
+};
