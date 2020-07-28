@@ -105,3 +105,5 @@ dist
 
 # IDE
 .vscode/
+
+yarn.lock

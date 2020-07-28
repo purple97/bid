@@ -13,3 +13,6 @@ export { default as middlewar } from './middlewar/index';
 export { default as LessToCss } from './actions/less-to-css';
 export { default as IconfontToBase64 } from './actions/iconfont';
 export { default as CompareVersion } from './utils/compare-version';
+export { default as WebpackProConfig } from './webpack/webpack.pro.config';
+export { default as WebpackDevConfig } from './webpack/webpack.dev.config';
+export { merge as WebpackMerge } from 'webpack-merge';

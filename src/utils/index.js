@@ -22,18 +22,23 @@ class Utils {
         this.git = setConfigFileVersion(this.userConfig);
         this.git.repo = new Repo(process.cwd());
         this.requireFileToJSON = requireFileToJSON;
+        this.__parentdir;
     }
     get path() {
         return {
-            rootPath: this.rootPath,
-            cwdPath: this.cwdPath
+            get rootPath() {
+                return path.join(__dirname, '../../');
+            },
+            get cwdPath() {
+                return process.cwd();
+            },
+            get parentDir() {
+                return this.__parentdir || path.join(__dirname, '../../');
+            }
         };
     }
-    get rootPath() {
-        return path.join(__dirname, '../');
-    }
-    get cwdPath() {
-        return process.cwd();
+    setParentDir(_path) {
+        this.__parentdir = _path;
     }
 }
 
