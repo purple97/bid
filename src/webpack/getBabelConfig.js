@@ -66,7 +66,7 @@ export default () => {
 
     ejs = {
         test: /\.ejs$/,
-        exclude: path.resolve(Utils.path.cwdPath, 'node_modules'),
+        // exclude: path.resolve(Utils.path.cwdPath, 'node_modules'),
         use: [
             { loader: 'babel-loader', options: { cwd: path.resolve(Utils.path.parentDir, 'node_modules') } },
             { loader: 'ejs-loader?variable=data' }

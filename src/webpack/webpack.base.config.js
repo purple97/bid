@@ -13,7 +13,7 @@ export default function (parentDirPath) {
         output: {
             path: path.resolve(cwdPath, './build'),
             filename: '[name].js',
-            chunkFilename: '[id].js',
+            chunkFilename: '[id].[hash].js',
             publicPath: '/'
         },
         //打包多文件和公共模块配置
