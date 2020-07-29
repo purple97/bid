@@ -52,7 +52,7 @@ const Lint = async () => {
             choices: BUILDINFOS.autoGetHtml.keys
         }
     ]);
-    console.log(answers);
+    // console.log(answers);
     if (answers.selectedEntry.length == 0) {
         return console.log(colors.red('没有选择任何页面,检测结束'));
     }

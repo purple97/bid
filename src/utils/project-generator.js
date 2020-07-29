@@ -7,12 +7,12 @@ const projectGenerator = (args, callback) => {
     const dirname = args.dirname;
     const examplesDir = args.examplesDir;
     let targetPath = '';
-    const commonFilePath = path.join(path.join(examplesDir, '..'), 'examples/commonFiles');
+    const commonFilePath = path.join(examplesDir, './commonFiles');
 
     if (!args.react) {
-        targetPath = path.join(path.join(examplesDir, '..'), 'examples/normal');
+        targetPath = path.join(examplesDir, './normal');
     } else {
-        targetPath = path.join(path.join(examplesDir, '..'), 'examples/react');
+        targetPath = path.join(examplesDir, './react');
     }
 
     if (!dirname) {

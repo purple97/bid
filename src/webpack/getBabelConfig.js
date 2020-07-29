@@ -40,7 +40,7 @@ export default () => {
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
         use: [
-            'thread-loader',
+            // 'thread-loader',
             {
                 loader: 'babel-loader',
                 options: babelOptions
@@ -53,7 +53,7 @@ export default () => {
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
         use: [
-            'thread-loader',
+            // 'thread-loader',
             {
                 loader: 'babel-loader',
                 options: babelOptions
