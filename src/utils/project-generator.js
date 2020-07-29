@@ -4,14 +4,15 @@ import colors from 'cli-color';
 import fse from 'fs-extra';
 
 const projectGenerator = (args, callback) => {
-    let dirname = args.dirname;
+    const dirname = args.dirname;
+    const examplesDir = args.examplesDir;
     let targetPath = '';
-    let commonFilePath = path.join(path.join(__dirname, '..'), 'examples/commonFiles');
+    const commonFilePath = path.join(path.join(examplesDir, '..'), 'examples/commonFiles');
 
     if (!args.react) {
-        targetPath = path.join(path.join(__dirname, '..'), 'examples/normal');
+        targetPath = path.join(path.join(examplesDir, '..'), 'examples/normal');
     } else {
-        targetPath = path.join(path.join(__dirname, '..'), 'examples/react');
+        targetPath = path.join(path.join(examplesDir, '..'), 'examples/react');
     }
 
     if (!dirname) {

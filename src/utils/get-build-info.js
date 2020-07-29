@@ -7,7 +7,6 @@ export const autoGetEntry = (version, devFilePath) => {
     let getJsEntry = dir => {
         fs.readdirSync(dir).forEach(file => {
             let pathname = path.join(dir, file);
-
             if (fs.statSync(pathname).isDirectory()) {
                 getJsEntry(pathname);
             } else if (/index\.js$/.test(pathname)) {

@@ -15,4 +15,5 @@ export { default as IconfontToBase64 } from './actions/iconfont';
 export { default as CompareVersion } from './utils/compare-version';
 export { default as WebpackProConfig } from './webpack/webpack.pro.config';
 export { default as WebpackDevConfig } from './webpack/webpack.dev.config';
+export { default as WebpackTestConfig } from './webpack/webpack.test.config';
 export { merge as WebpackMerge } from 'webpack-merge';

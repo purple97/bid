@@ -39,10 +39,13 @@ export default () => {
         test: /\.(js|jsx)$/,
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-            options: babelOptions
-        }
+        use: [
+            'thread-loader',
+            {
+                loader: 'babel-loader',
+                options: babelOptions
+            }
+        ]
     };
 
     tsx = {
@@ -50,6 +53,7 @@ export default () => {
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
         use: [
+            'thread-loader',
             {
                 loader: 'babel-loader',
                 options: babelOptions
