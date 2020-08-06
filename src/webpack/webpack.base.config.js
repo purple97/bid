@@ -4,7 +4,7 @@ import resolveConfig from './resolve';
 import externalsConfig from './externals';
 // const optimizationConfig = require('./optimization');
 const cwdPath = process.cwd(); // 工程项目root path
-export default function (parentDirPath) {
+export default function(parentDirPath) {
     //
     return {
         mode: 'production',
@@ -13,7 +13,7 @@ export default function (parentDirPath) {
         output: {
             path: path.resolve(cwdPath, './build'),
             filename: '[name].js',
-            chunkFilename: '[id].[hash].js',
+            chunkFilename: '[id].[hash:10].js',
             publicPath: '/'
         },
         //打包多文件和公共模块配置

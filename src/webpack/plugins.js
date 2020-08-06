@@ -44,7 +44,7 @@ function getPlugins(filepath, env) {
     console.log('构建环境 NODE_ENV:', process.env.NODE_ENV);
     if (process.env.NODE_ENV == 'dev') {
         config.push(new webpack.NamedModulesPlugin());
-        // config.push(new webpack.HotModuleReplacementPlugin());
+        config.push(new webpack.HotModuleReplacementPlugin());
     }
     if (process.env.NODE_ENV != 'dev') {
         config.unshift(new ProgressBar());
@@ -53,7 +53,7 @@ function getPlugins(filepath, env) {
         if (typeof filepath === 'string') {
             config.push(setHtmlPlugin(filepath, env));
         } else if (Array.isArray(filepath)) {
-            filepath.forEach(function (file) {
+            filepath.forEach(function(file) {
                 config.push(setHtmlPlugin(file, env));
             });
         }

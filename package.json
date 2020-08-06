@@ -50,6 +50,7 @@
         "git-tools": "^0.3.0",
         "html-webpack-plugin": "3.2.0",
         "html-webpack-replace-host": "^1.0.5",
+        "http-proxy-middleware": "^1.0.5",
         "inquirer": "^7.3.2",
         "json-loader": "^0.5.7",
         "less": "^3.12.0",

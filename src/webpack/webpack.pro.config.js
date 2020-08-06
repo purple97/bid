@@ -6,7 +6,7 @@ import { merge } from 'webpack-merge';
 import webpackBaseConfig from './webpack.base.config';
 
 const cwdPath = process.cwd(); // 工程项目root path
-const envTypesByOnline = ['tag', 'productionNoTag', 'production', 'gray'];
+const envTypesByOnline = ['production-build', 'tag', 'productionNoTag', 'production', 'gray'];
 
 export default parentDirPath => (outputPath, buildConfig) => {
     const jsHost = `${Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;

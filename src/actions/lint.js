@@ -5,7 +5,8 @@ import align from 'wide-align';
 import colors from 'cli-color';
 import inquirer from 'inquirer';
 import { CLIEngine } from 'eslint';
-import { Utils } from '../index';
+import getUserConfig from '../utils/get-config-json';
+import getBuildInfo from '../utils/get-build-info';
 
 const printMessage = results => {
     let errorCount = 0;
@@ -42,8 +43,8 @@ const runLint = dirPaths => {
 const Lint = async () => {
     console.log(colors.green('开始代码检测'));
     // let deployJSON = null;
-    let USERCONFIG = Utils.getUserConfig; //读取工程根目录下的config.json
-    let BUILDINFOS = Utils.getBuildInfo(USERCONFIG.version); //返回所有autoGetEntry({'带版本号的js':'XX.js'}),返回所有autoGetHtml({html = {keys: [],jsEntry: {},originList: [html目录]}})
+    let USERCONFIG = getUserConfig(); //读取工程根目录下的config.json
+    let BUILDINFOS = getBuildInfo(USERCONFIG.version); //返回所有autoGetEntry({'带版本号的js':'XX.js'}),返回所有autoGetHtml({html = {keys: [],jsEntry: {},originList: [html目录]}})
     const answers = await inquirer.prompt([
         {
             type: 'checkbox',
@@ -58,8 +59,9 @@ const Lint = async () => {
     }
     const dirPaths = [];
     answers.selectedEntry.forEach(path => {
-        let dirPath = path.replace(/[.\w]*\/index$/, '');
-        dirPaths.push(dirPath);
+        let dirPathJSX = path.replace(/[.\w]*\/index$/, '**/*.js*');
+        let dirPathTSX = path.replace(/[.\w]*\/index$/, '**/*.ts*');
+        dirPaths.push(dirPathJSX, dirPathTSX);
     });
     try {
         runLint(dirPaths);
