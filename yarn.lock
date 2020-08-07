@@ -4042,7 +4042,7 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.4.x"
 
-html-webpack-plugin@3.2.0:
+html-webpack-plugin@3.2.0, html-webpack-plugin@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/html-webpack-plugin/-/html-webpack-plugin-3.2.0.tgz#b01abbd723acaaa7b37b6af4492ebda03d9dd37b"
   integrity sha1-sBq71yOsqqeze2r0SS69oD2d03s=
@@ -8289,12 +8289,13 @@ webpack-merge@^5.0.9:
     clone-deep "^4.0.1"
     wildcard "^2.0.0"
 
-webpack-plugin-inline-source@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/webpack-plugin-inline-source/-/webpack-plugin-inline-source-1.0.5.tgz#912afbe718f2e906b423f6ff9e19bd95f3a5998f"
-  integrity sha512-l0CU4nap5gZ7CbyVsHppIrBazEeX793CXBa7a6mWKBdRgLphRARwx8mGpQ307X59T3bDABh+qo5+6E3NhN0yGA==
+webpack-plugin-inline-source@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/webpack-plugin-inline-source/download/webpack-plugin-inline-source-1.0.3.tgz#aebb368bd0a0eb50454258331836b2914ef33476"
+  integrity sha1-rrs2i9Cg61BFQlgzGDaykU7zNHY=
   dependencies:
     cheerio "^1.0.0-rc.2"
+    html-webpack-plugin "^3.2.0"
 
 webpack-sources@^1.4.0, webpack-sources@^1.4.1:
   version "1.4.3"
