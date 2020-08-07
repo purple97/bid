@@ -1,5 +1,5 @@
 import colors from 'cli-color';
-import version from '../../package.json';
+import { version } from '../../package.json';
 import CHECKNPM from '../utils/check-npm';
 
 /*
