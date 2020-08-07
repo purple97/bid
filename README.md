@@ -2,13 +2,13 @@
  * @Author: dezhao.chen
  * @Date: 2020-07-10 17:02:25
  * @LastEditors: dezhao.chen
- * @LastEditTime: 2020-08-06 14:38:31
+ * @LastEditTime: 2020-08-07 10:21:45
  * @Description: 前端开发脚手架基础库
 -->
 
 ## Bid 前端开发脚手架基础库
 
--   <font bgcolor=orgin>**未经本人允许禁止商业用途**</font>
+-   <font color=orange>**未经本人允许禁止商业用途**</font>
 -   **项目结构：**
 
 > -   /src/utils, 基础工具库
