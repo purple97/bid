@@ -1,4 +1,18 @@
+# 编辑器配置
+.editorconfig
+
+# build配置
 .babelrc
+
+# 代码格式化
 .prettierrc
+.eslintignore
+.eslintrc.js
+
+# 依赖包安装列表
 yarn.lock
+yarn-error.log
+
+# 其他
+.gitignore
 ./src
