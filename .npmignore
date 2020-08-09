@@ -15,4 +15,4 @@ yarn-error.log
 
 # 其他
 .gitignore
-./src
+./src/
