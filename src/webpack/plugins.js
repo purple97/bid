@@ -8,7 +8,7 @@ import HtmlWebpackReplaceHost from 'html-webpack-replace-host';
 import LazyPathPlugin from 'bid-lazy-path-plugin';
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
-// import ProgressBar from 'progress-bar-webpack-plugin';
+import ProgressBar from 'progress-bar-webpack-plugin';
 const tagVersion = Utils.getUserConfig.version;
 
 function setHtmlPlugin(file, env) {
@@ -47,7 +47,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         config.push(new webpack.HotModuleReplacementPlugin());
     }
     if (process.env.NODE_ENV != 'dev') {
-        // config.unshift(new ProgressBar());
+        (env == 'local' || env == 'daily') && config.unshift(new ProgressBar());
         config.push(new CleanWebpackPlugin());
         config.push(new LazyPathPlugin({ version: tagVersion, jsHost }));
         if (typeof htmlEntry === 'string') {
