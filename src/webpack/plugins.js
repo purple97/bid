@@ -5,10 +5,10 @@ import Utils from '../utils';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host';
-import LazyPathPlugin from '../../../bid-lazy-path-plugin/lib/index.js';
+import LazyPathPlugin from 'bid-lazy-path-plugin';
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
-// import ProgressBar from 'progress-bar-webpack-plugin';
+import ProgressBar from 'progress-bar-webpack-plugin';
 const tagVersion = Utils.getUserConfig.version;
 
 function setHtmlPlugin(file, env) {
@@ -47,7 +47,7 @@ function getPlugins(filepath, env) {
         config.push(new webpack.HotModuleReplacementPlugin());
     }
     if (process.env.NODE_ENV != 'dev') {
-        // config.unshift(new ProgressBar());
+        config.unshift(new ProgressBar());
         config.push(new CleanWebpackPlugin());
         config.push(new LazyPathPlugin({ version: tagVersion, jsHost }));
         if (typeof filepath === 'string') {
