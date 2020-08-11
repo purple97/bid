@@ -32,8 +32,8 @@ function setHtmlPlugin(file, env) {
     });
 }
 
-function getPlugins(filepath, env) {
-    const jsHost = `${Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
+function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
+    const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
     let config = [
         new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),
         //避免重复的模块
@@ -50,10 +50,10 @@ function getPlugins(filepath, env) {
         // config.unshift(new ProgressBar());
         config.push(new CleanWebpackPlugin());
         config.push(new LazyPathPlugin({ version: tagVersion, jsHost }));
-        if (typeof filepath === 'string') {
-            config.push(setHtmlPlugin(filepath, env));
-        } else if (Array.isArray(filepath)) {
-            filepath.forEach(function(file) {
+        if (typeof htmlEntry === 'string') {
+            config.push(setHtmlPlugin(htmlEntry, env));
+        } else if (Array.isArray(htmlEntry)) {
+            htmlEntry.forEach(function(file) {
                 config.push(setHtmlPlugin(file, env));
             });
         }

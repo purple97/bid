@@ -9,7 +9,7 @@ const cwdPath = process.cwd(); // 工程项目root path
 const envTypesByOnline = ['production-build', 'tag', 'productionNoTag', 'production', 'gray'];
 
 export default parentDirPath => (outputPath, buildConfig) => {
-    const jsHost = `${Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
+    const jsHost = `${buildConfig.cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
     const isOnline = envTypesByOnline.indexOf(buildConfig.env) !== -1;
     const output = outputPath ? outputPath : './build';
     const _filename = isOnline ? 'javascripts/build/[name].js' : '[name].js';
@@ -26,6 +26,6 @@ export default parentDirPath => (outputPath, buildConfig) => {
         resolve: {
             modules: [path.join(parentDirPath, 'node_modules')]
         },
-        plugins: pluginsConfig(buildConfig.htmlEntry, buildConfig.env)
+        plugins: pluginsConfig(buildConfig)
     });
 };

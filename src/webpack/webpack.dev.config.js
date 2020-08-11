@@ -19,7 +19,7 @@ const WebpackConfig = parentDirPath => (outputPath, filePath) => {
         resolve: {
             modules: [path.join(parentDirPath, 'node_modules')]
         },
-        plugins: pluginsConfig(filePath, 'dev')
+        plugins: pluginsConfig({ htmlEntry: filePath, env: 'dev' })
     });
 };
 // export default WebpackConfig;
