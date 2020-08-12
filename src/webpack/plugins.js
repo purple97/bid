@@ -60,7 +60,8 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
 
         config.push(
             new HtmlWebpackReplaceHost({
-                replaceString: env == 'local' || env == 'daily' ? '' : jsHost
+                replaceString: env == 'local' || env == 'daily' ? '' : jsHost,
+                env: env
             })
         );
 
