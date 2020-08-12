@@ -49,7 +49,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     if (process.env.NODE_ENV != 'dev') {
         (env == 'local' || env == 'daily') && config.unshift(new ProgressBar());
         config.push(new CleanWebpackPlugin());
-        config.push(new LazyPathPlugin({ version: tagVersion, jsHost }));
+        config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }));
         if (typeof htmlEntry === 'string') {
             config.push(setHtmlPlugin(htmlEntry, env));
         } else if (Array.isArray(htmlEntry)) {
@@ -57,11 +57,9 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
                 config.push(setHtmlPlugin(file, env));
             });
         }
-
         config.push(
             new HtmlWebpackReplaceHost({
-                replaceString: env == 'local' || env == 'daily' ? '' : jsHost,
-                env: env
+                replaceString: env == 'local' || env == 'daily' ? '' : jsHost
             })
         );
 
