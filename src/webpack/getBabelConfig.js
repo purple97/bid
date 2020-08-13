@@ -11,19 +11,7 @@ export default () => {
     let babelOptions = {
         babelrc: false,
         cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
-        presets: [
-            [
-                '@babel/preset-env',
-                {
-                    modules: 'commonjs',
-                    targets: {
-                        chrome: '38',
-                        ie: '11'
-                    }
-                }
-            ],
-            '@babel/preset-react'
-        ],
+        presets: [['@babel/preset-env', { modules: 'commonjs' }], '@babel/preset-react'],
         plugins: [
             [
                 'babel-plugin-react-scoped-css',
