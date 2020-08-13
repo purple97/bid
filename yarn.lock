@@ -1632,13 +1632,17 @@ bfj@^6.1.1:
     hoopy "^0.1.4"
     tryer "^1.0.1"
 
-"bid-lazy-loader@link:../bid-lazy-loader":
-  version "0.0.0"
-  uid ""
+bid-lazy-loader@latest:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/bid-lazy-loader/-/bid-lazy-loader-1.0.4.tgz#072d9d16f1766dc2b4c51a570555a95a971c85ad"
+  integrity sha512-/pUTK+CSnWE0onug/eqgypJ1g0G13PnN1dEjGeiWAVfWe/W7BVJSF0RjXRg+YJJVO2YoXDDrkAKB3BnXPYdoxQ==
+  dependencies:
+    loader-utils "^2.0.0"
 
-"bid-lazy-path-plugin@link:../bid-lazy-path-plugin":
-  version "0.0.0"
-  uid ""
+bid-lazy-path-plugin@latest:
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/bid-lazy-path-plugin/-/bid-lazy-path-plugin-1.0.9.tgz#ed85fca20c78a09360e7aa4096405d749a11be78"
+  integrity sha512-LMspYaaDcw40UPEK7sI6tA5LqZ+R25X+QshCOLS2ZnfReVn9fWDW4o5HsSg3+rp7sJLrAn0xVN5aCB3aYN48TQ==
 
 big.js@^3.1.3:
   version "3.2.0"
