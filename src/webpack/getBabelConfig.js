@@ -31,18 +31,26 @@ export default () => {
                     include: '.scoped.(le|c)ss$'
                 }
             ],
-            '@babel/plugin-transform-runtime',
             ['@babel/plugin-proposal-decorators', { legacy: true }],
             '@babel/plugin-proposal-class-properties',
             '@babel/plugin-proposal-object-rest-spread',
             'babel-plugin-add-module-exports',
             [
-                'babel-plugin-import',
+                '@babel/plugin-transform-runtime',
+                {
+                    helpers: false,
+                    polyfill: false,
+                    regenerator: true,
+                    moduleName: 'babel-runtime'
+                }
+            ],
+            [
+                ('babel-plugin-import',
                 {
                     libraryName: 'antd',
                     libraryDirectory: 'es',
                     style: 'css'
-                }
+                })
             ]
         ],
         cacheDirectory: true
