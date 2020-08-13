@@ -31,12 +31,12 @@ export default () => {
                 }
             ],
             [
-                ('babel-plugin-import',
+                'babel-plugin-import',
                 {
                     libraryName: 'antd',
                     libraryDirectory: 'es',
                     style: 'css'
-                })
+                }
             ]
         ],
         cacheDirectory: true
