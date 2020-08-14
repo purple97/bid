@@ -2,7 +2,7 @@ import path from 'path';
 import moduleConfig from './module';
 import resolveConfig from './resolve';
 import externalsConfig from './externals';
-// const optimizationConfig = require('./optimization');
+import optimizationConfig from './optimization';
 const cwdPath = process.cwd(); // 工程项目root path
 export default function(parentDirPath) {
     //
@@ -17,7 +17,7 @@ export default function(parentDirPath) {
             publicPath: '/'
         },
         //打包多文件和公共模块配置
-        // optimization: optimizationConfig,
+        optimization: optimizationConfig,
         resolveLoader: {
             modules: [
                 path.join(cwdPath, 'node_modules'),

@@ -84,7 +84,7 @@ export default () => {
     };
     less = {
         test: /\.less$/,
-        include: [dirSrc, dirNodeModule],
+        // include: [dirSrc, dirNodeModule],
         // exclude: /node_modules/,
         use: [
             { loader: 'style-loader' },

@@ -11,7 +11,7 @@ const envTypesByOnline = ['production-build', 'tag', 'productionNoTag', 'product
 export default parentDirPath => (outputPath, buildConfig) => {
     const jsHost = `${buildConfig.cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
     const isOnline = envTypesByOnline.indexOf(buildConfig.env) !== -1;
-    const output = outputPath ? outputPath : './build';
+    const output = outputPath ? outputPath : './deploy';
     const _filename = isOnline ? 'javascripts/build/[name].js' : '[name].js';
     return merge(webpackBaseConfig(parentDirPath), {
         mode: 'production',

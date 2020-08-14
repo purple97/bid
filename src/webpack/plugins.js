@@ -42,13 +42,9 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         new webpack.NoEmitOnErrorsPlugin()
     ];
     console.log('构建环境 NODE_ENV:', process.env.NODE_ENV);
-    if (process.env.NODE_ENV == 'dev') {
-        config.push(new webpack.NamedModulesPlugin());
-        config.push(new webpack.HotModuleReplacementPlugin());
-    }
     if (process.env.NODE_ENV != 'dev') {
         (env == 'local' || env == 'daily') && config.unshift(new ProgressBar());
-        config.push(new CleanWebpackPlugin());
+        config.push(new CleanWebpackPlugin({ dry: true }));
         config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }));
         if (typeof htmlEntry === 'string') {
             config.push(setHtmlPlugin(htmlEntry, env));
@@ -69,6 +65,8 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
             })
         );
     } else {
+        config.push(new webpack.NamedModulesPlugin());
+        config.push(new webpack.HotModuleReplacementPlugin());
         config.push(new FriendlyErrorsPlugin());
     }
     // console.log(config);

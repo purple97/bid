@@ -12,7 +12,7 @@ const analyzerConfig = {
     analyzerPort: 8866
 };
 const WebpackConfig = parentDirPath => outputPath => {
-    const output = outputPath ? outputPath : './build';
+    const output = outputPath ? outputPath : './deploy';
     const smp = new SpeedMeasurePlugin();
     return smp.wrap(
         merge(webpackBaseConfig(parentDirPath), {
