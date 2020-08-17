@@ -2,6 +2,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import Utils from '../utils';
+import program from 'commander';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host';
@@ -33,6 +34,7 @@ function setHtmlPlugin(file, env) {
 }
 
 function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
+    const hotUpdateMode = program.args[0].hot;
     const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
     let config = [
         new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),
@@ -66,7 +68,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         );
     } else {
         config.push(new webpack.NamedModulesPlugin());
-        config.push(new webpack.HotModuleReplacementPlugin());
+        hotUpdateMode && config.push(new webpack.HotModuleReplacementPlugin());
         config.push(new FriendlyErrorsPlugin());
     }
     // console.log(config);
