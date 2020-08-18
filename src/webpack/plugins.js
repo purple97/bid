@@ -2,7 +2,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import Utils from '../utils';
-import program from 'commander';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host';
@@ -34,7 +33,6 @@ function setHtmlPlugin(file, env) {
 }
 
 function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
-    const hotUpdateMode = program.args[0].hot;
     const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`;
     let config = [
         new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),
@@ -46,7 +44,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     console.log('构建环境 NODE_ENV:', process.env.NODE_ENV);
     if (process.env.NODE_ENV != 'dev') {
         (env == 'local' || env == 'daily') && config.unshift(new ProgressBar());
-        config.push(new CleanWebpackPlugin({ dry: true }));
+        config.push(new CleanWebpackPlugin());
         config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }));
         if (typeof htmlEntry === 'string') {
             config.push(setHtmlPlugin(htmlEntry, env));
@@ -68,7 +66,6 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         );
     } else {
         config.push(new webpack.NamedModulesPlugin());
-        hotUpdateMode && config.push(new webpack.HotModuleReplacementPlugin());
         config.push(new FriendlyErrorsPlugin());
     }
     // console.log(config);
