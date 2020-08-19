@@ -1639,10 +1639,10 @@ bid-lazy-loader@latest:
   dependencies:
     loader-utils "^2.0.0"
 
-bid-lazy-path-plugin@latest:
-  version "1.0.9"
-  resolved "https://registry.npmjs.org/bid-lazy-path-plugin/-/bid-lazy-path-plugin-1.0.9.tgz#ed85fca20c78a09360e7aa4096405d749a11be78"
-  integrity sha512-LMspYaaDcw40UPEK7sI6tA5LqZ+R25X+QshCOLS2ZnfReVn9fWDW4o5HsSg3+rp7sJLrAn0xVN5aCB3aYN48TQ==
+bid-lazy-path-plugin@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.npmjs.org/bid-lazy-path-plugin/-/bid-lazy-path-plugin-1.0.10.tgz#8f32bcef880120064814770d03f9d36ca5fbe5bc"
+  integrity sha512-NsIbI1Cp0O8ynTjiwXfb3MtMKn+XxmEKQt7k/uTtZWqj3Z9S2lF6P99vqUb1Xzs02BCQJ09Mlhn25ef1D3+T2w==
 
 big.js@^3.1.3:
   version "3.2.0"
@@ -4227,13 +4227,6 @@ init-package-json@^1.10.3:
     semver "2.x || 3.x || 4 || 5"
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
-
-inline-manifest-webpack-plugin@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.npmjs.org/inline-manifest-webpack-plugin/-/inline-manifest-webpack-plugin-4.0.2.tgz#39bf4144c3a6210686bfe44c73f2c883681e51bb"
-  integrity sha512-j1Q0Y7m2GVsTxnOzQ7YzIlfn5Th2Ga6Ivoqme1G0iGZc8m7R3aQY8HfzLW7ew3CwmqdZb/O26mf9Ak2JA7zzKg==
-  dependencies:
-    source-map-url "0.4.0"
 
 inquirer@^7.3.2:
   version "7.3.3"
@@ -7274,7 +7267,7 @@ source-map-support@~0.5.12:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
 
-source-map-url@0.4.0, source-map-url@^0.4.0:
+source-map-url@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/source-map-url/-/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
   integrity sha1-PpNdfd1zYxuXZZlW1VEo6HtQhKM=

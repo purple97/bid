@@ -43,8 +43,11 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     ];
     console.log('构建环境 NODE_ENV:', process.env.NODE_ENV);
     if (process.env.NODE_ENV != 'dev') {
-        (env == 'local' || env == 'daily') && config.unshift(new ProgressBar());
-        config.push(new CleanWebpackPlugin());
+        if (env == 'local' || env == 'daily' || env == 'production-build') {
+            config.unshift(new ProgressBar());
+            config.push(new CleanWebpackPlugin());
+        }
+
         config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }));
         if (typeof htmlEntry === 'string') {
             config.push(setHtmlPlugin(htmlEntry, env));
