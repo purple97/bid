@@ -13,7 +13,7 @@ const WebpackConfig = parentDirPath => (outputPath, filePath) => {
         output: {
             path: path.resolve(cwdPath, output),
             filename: '[name].js',
-            // chunkFilename: '[id].js', //
+            chunkFilename: '[id].js', //
             publicPath: '/'
         },
         resolve: {

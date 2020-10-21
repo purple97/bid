@@ -1,37 +1,37 @@
-import path from 'path';
-import Utils from '../utils/';
-import lessVariableInjection from 'less-variable-injection';
-const dirSrc = path.join(process.cwd(), 'src');
-const dirNodeModule = /node_modules/;
+import path from 'path'
+import Utils from '../utils/'
+import lessVariableInjection from 'less-variable-injection'
+const dirSrc = path.join(process.cwd(), 'src')
+const dirNodeModule = /node_modules/
 
 export default () => {
-    const configJson = Utils.getUserConfig;
+    const configJson = Utils.getUserConfig
     // const isOnline = env == 'production';
-    let jsx, tsx, ejs, less, css, json, file;
+    let jsx, tsx, ejs, less, css, json, file
     let babelOptions = {
         babelrc: false,
         cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
-        presets: [['@babel/preset-env', { modules: 'commonjs' }], '@babel/preset-react'],
+        presets: [[require('@babel/preset-env'), { modules: 'commonjs' }], require('@babel/preset-react')],
         plugins: [
             [
-                'babel-plugin-react-scoped-css',
+                require('babel-plugin-react-scoped-css'),
                 {
                     include: '.scoped.(le|c)ss$'
                 }
             ],
-            ['@babel/plugin-proposal-decorators', { legacy: true }],
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-proposal-object-rest-spread',
-            'babel-plugin-add-module-exports',
+            [require('@babel/plugin-proposal-decorators'), { legacy: true }],
+            require('@babel/plugin-proposal-class-properties'),
+            require('@babel/plugin-proposal-object-rest-spread'),
+            require('babel-plugin-add-module-exports'),
             [
-                '@babel/plugin-transform-runtime',
+                require('@babel/plugin-transform-runtime'),
                 {
                     helpers: false,
                     regenerator: true
                 }
             ],
             [
-                'babel-plugin-import',
+                require('babel-plugin-import'),
                 {
                     libraryName: 'antd',
                     libraryDirectory: 'es',
@@ -40,7 +40,7 @@ export default () => {
             ]
         ],
         cacheDirectory: true
-    };
+    }
     jsx = {
         test: /\.(js|jsx)$/,
         include: [dirSrc, /@bairong\//],
@@ -52,7 +52,7 @@ export default () => {
                 options: babelOptions
             }
         ]
-    };
+    }
 
     tsx = {
         test: /\.(ts|tsx)$/,
@@ -72,7 +72,7 @@ export default () => {
                 }
             }
         ]
-    };
+    }
 
     ejs = {
         test: /\.ejs$/,
@@ -81,7 +81,7 @@ export default () => {
             { loader: 'babel-loader', options: { cwd: path.resolve(Utils.path.parentDir, 'node_modules') } },
             { loader: 'ejs-loader?variable=data' }
         ]
-    };
+    }
     less = {
         test: /\.less$/,
         // include: [dirSrc, dirNodeModule],
@@ -99,7 +99,7 @@ export default () => {
                 }
             }
         ]
-    };
+    }
     css = {
         test: /\.css$/,
         include: [dirSrc, dirNodeModule],
@@ -114,28 +114,28 @@ export default () => {
             },
             { loader: 'scoped-css-loader' }
         ]
-    };
+    }
 
     json = {
         test: /\.json$/,
         exclude: /node_modules/,
         use: { loader: 'json-loader' }
-    };
+    }
 
     file = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: { loader: 'file-loader' }
-    };
+    }
 
     if (configJson.theme) {
         if (!less.use[2].options) {
-            less.use[2].options = {};
+            less.use[2].options = {}
         }
         if (!less.use[2].options.plugins) {
-            less.use[2].options.plugins = [];
+            less.use[2].options.plugins = []
         }
-        less.use[2].options.plugins.push(new lessVariableInjection(configJson.theme));
+        less.use[2].options.plugins.push(new lessVariableInjection(configJson.theme))
     }
 
-    return [jsx, tsx, ejs, less, css, json, file];
-};
+    return [jsx, tsx, ejs, less, css, json, file]
+}
