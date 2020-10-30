@@ -7,7 +7,6 @@
         "watch": "npx babel ./src -d lib --watch",
         "delete": "rm -rf lib && rm -rf dist",
         "build": "npm run delete && npx babel ./src -d lib",
-        "beta": "npm publish --tag beta",
         "tag": "npm run build && npm publish ./"
     },
     "repository": {
