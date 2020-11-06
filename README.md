@@ -8,6 +8,8 @@
 
 ## Bid 前端开发脚手架基础库
 
+-   更新日志:[CHANGELOG](./CHANGELOG.md)
+
 -   <font color=orange>**未经本人允许禁止商业用途**</font>
 -   **项目结构：**
 
@@ -34,7 +36,7 @@ import {
     WebpackDevConfig,
     WebpackTestConfig,
     merge
-} from 'bid';
+} from 'bid'
 ```
 
 ### Utils

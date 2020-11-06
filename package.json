@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
@@ -28,7 +28,9 @@
         "@babel/core": "^7.11.1",
         "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@babel/plugin-proposal-decorators": "^7.10.5",
+        "@babel/plugin-proposal-nullish-coalescing-operator": "^7.12.1",
         "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+        "@babel/plugin-proposal-optional-chaining": "^7.12.1",
         "@babel/plugin-transform-runtime": "^7.10.5",
         "@babel/preset-env": "^7.4.3",
         "@babel/preset-react": "^7.10.4",

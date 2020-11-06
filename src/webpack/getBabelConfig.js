@@ -19,7 +19,9 @@ export default () => {
                     include: '.scoped.(le|c)ss$'
                 }
             ],
-            [require('@babel/plugin-proposal-decorators'), { legacy: true }],
+            [(require('@babel/plugin-proposal-decorators'), { legacy: true })],
+            require('@babel/plugin-proposal-optional-chaining'), // 可选链
+            require('@babel/plugin-proposal-nullish-coalescing-operator'), // 双问号
             require('@babel/plugin-proposal-class-properties'),
             require('@babel/plugin-proposal-object-rest-spread'),
             require('babel-plugin-add-module-exports'),
