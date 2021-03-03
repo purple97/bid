@@ -80,7 +80,10 @@ export default () => {
         test: /\.ejs$/,
         // exclude: path.resolve(Utils.path.cwdPath, 'node_modules'),
         use: [
-            { loader: 'babel-loader', options: { cwd: path.resolve(Utils.path.parentDir, 'node_modules') } },
+            {
+                loader: 'babel-loader',
+                options: { cwd: path.resolve(Utils.path.parentDir, 'node_modules') }
+            },
             { loader: 'ejs-loader?variable=data' }
         ]
     }
@@ -102,6 +105,18 @@ export default () => {
             }
         ]
     }
+    // 替换主题颜色
+    if (configJson.theme && less.use[3].loader == 'less-loader') {
+        console.info('启用less-loader变量替换!')
+        if (!less.use[3].options) {
+            less.use[3].options = { lessOptions: {} }
+        }
+        if (!less.use[3].options.lessOptions.plugins) {
+            less.use[3].options.lessOptions.plugins = []
+        }
+        less.use[3].options.lessOptions.plugins.push(new lessVariableInjection(configJson.theme))
+    }
+
     css = {
         test: /\.css$/,
         include: [dirSrc, dirNodeModule],
@@ -127,16 +142,6 @@ export default () => {
     file = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: { loader: 'file-loader' }
-    }
-
-    if (configJson.theme) {
-        if (!less.use[2].options) {
-            less.use[2].options = {}
-        }
-        if (!less.use[2].options.plugins) {
-            less.use[2].options.plugins = []
-        }
-        less.use[2].options.plugins.push(new lessVariableInjection(configJson.theme))
     }
 
     return [jsx, tsx, ejs, less, css, json, file]
