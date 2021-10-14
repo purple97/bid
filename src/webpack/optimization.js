@@ -17,7 +17,7 @@ export default {
         //     vendor: {
         //         test: /node_modules/,
         //         chunks: 'initial',
-        //         name: 'vendor',
+        //         name: '../vendor',
         //         priority: 10,
         //         enforce: true
         //     }
@@ -26,7 +26,7 @@ export default {
     runtimeChunk: {
         // name: 'manifest'
         name: function(entrypoint) {
-            return `${entrypoint.name}`;
+            return `${entrypoint.name}`
         }
     }
-};
+}

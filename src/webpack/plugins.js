@@ -2,22 +2,21 @@
 import path from 'path'
 import webpack from 'webpack'
 import Utils from '../utils'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import HtmlWebpackPlugin from '../plugins/html-webpack-plugin'
+// import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
-import LazyPathPlugin from 'bid-lazy-path-plugin'
+// import LazyPathPlugin from 'bid-lazy-path-plugin'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import ProgressBar from 'progress-bar-webpack-plugin'
 const tagVersion = Utils.getUserConfig.version
 
 function setHtmlPlugin(file, env) {
-    const isOnline = env === 'tag' || env === 'productionNoTag' || env == 'production' || env === 'gray'
-    let chunksName = path.dirname(file) + '/' + tagVersion + '/index'
-    chunksName = chunksName.replace(/^\.\//, '')
+    const isOnline = ['tag', 'productionNoTag', 'production-build', 'production', 'gray'].indexOf(env) !== -1
+    // let chunksName = path.dirname(file) + '/' + tagVersion + '/index'
+    // chunksName = chunksName.replace(/^\.\//, '')
     // chunksName = isOnline ? chunksName.replace(/[.\d]*\/index/g, 'index') : chunksName;
-    const _filename = isOnline ? path.join('./html/build', file) : file
-    // console.log(path.join('./html/build', file), isOnline, chunksName);
+    // const _filename = isOnline ? path.join('./html/build', file) : file
     return new HtmlWebpackPlugin({
         version: tagVersion,
         inject: true,
@@ -26,9 +25,9 @@ function setHtmlPlugin(file, env) {
             collapseWhitespace: true,
             removeComments: true
         },
-        filename: _filename,
-        template: path.resolve(file),
-        chunks: [chunksName]
+        path: path.resolve(process.cwd(), './deploy', isOnline ? './html/build' : './build'),
+        filename: file,
+        template: path.resolve(file)
     })
 }
 
@@ -45,10 +44,10 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     if (process.env.NODE_ENV != 'dev') {
         if (env == 'local' || env == 'daily' || env == 'production-build') {
             config.unshift(new ProgressBar())
-            config.push(new CleanWebpackPlugin())
+            // config.push(new CleanWebpackPlugin())
         }
 
-        config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }))
+        // config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }))
         if (typeof htmlEntry === 'string') {
             config.push(setHtmlPlugin(htmlEntry, env))
         } else if (Array.isArray(htmlEntry)) {

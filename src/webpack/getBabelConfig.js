@@ -7,7 +7,7 @@ const dirNodeModule = /node_modules/
 export default () => {
     const configJson = Utils.getUserConfig
     // const isOnline = env == 'production';
-    let jsx, tsx, ejs, less, css, json, file
+    let jsx, tsx, ejs, less, css, file
     let babelOptions = {
         babelrc: false,
         cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
@@ -133,16 +133,10 @@ export default () => {
         ]
     }
 
-    json = {
-        test: /\.json$/,
-        exclude: /node_modules/,
-        use: { loader: 'json-loader' }
-    }
-
     file = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: { loader: 'file-loader' }
     }
 
-    return [jsx, tsx, ejs, less, css, json, file]
+    return [jsx, tsx, ejs, less, css, file]
 }
