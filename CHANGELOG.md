@@ -10,6 +10,7 @@
     -   output.path 日常输出路径从 deploy/build 改为 deploy/build/src/p/1.0.0/
     -   output.path 线上输出路径从 deploy/javascripts/build 改为 deploy/javascripts/build/src/p/1.0.0/
     -   更新依赖：webpack-plugin-inline-source@1.0.8
+        -   加工 inline 的 js 文件内容， es6 转 es5，压缩
         -   webpack-plugin-inline-source 插件的 loader “plugins/html-inline-source-loaders.js”
 
 ## v1.0.19
