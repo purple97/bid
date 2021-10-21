@@ -3,6 +3,7 @@ import path from 'path'
 import webpack from 'webpack'
 import Utils from '../utils'
 import HtmlWebpackPlugin from '../plugins/html-webpack-plugin'
+import htmlInlineSourceLoaders from '../plugins/html-inline-source-loaders'
 // import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 // import LazyPathPlugin from 'bid-lazy-path-plugin'
@@ -40,7 +41,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
         new webpack.NoEmitOnErrorsPlugin()
     ]
-    console.log('构建环境 NODE_ENV:', process.env.NODE_ENV)
+
     if (process.env.NODE_ENV != 'dev') {
         if (env == 'local' || env == 'daily' || env == 'production-build') {
             config.unshift(new ProgressBar())
@@ -63,7 +64,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
 
         config.push(
             new HtmlWebpackInlineSourcePlugin({
-                env: env == 'local' || env == 'daily' ? 'development' : 'production'
+                loaders: htmlInlineSourceLoaders
             })
         )
     } else {
