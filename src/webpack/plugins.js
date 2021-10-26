@@ -34,6 +34,8 @@ function setHtmlPlugin(file, env) {
 
 function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
+    const jsPath = jsHost + path.dirname(`${htmlEntry.replace(/^\.\//, '')}`) + `/${Utils.getUserConfig.version}/`
+
     let config = [
         new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),
         //避免重复的模块
@@ -49,16 +51,12 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         }
 
         // config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }))
-        if (typeof htmlEntry === 'string') {
-            config.push(setHtmlPlugin(htmlEntry, env))
-        } else if (Array.isArray(htmlEntry)) {
-            htmlEntry.forEach(function(file) {
-                config.push(setHtmlPlugin(file, env))
-            })
-        }
+        config.push(setHtmlPlugin(htmlEntry, env))
+
+        // console.log(jsPath)
         config.push(
             new HtmlWebpackReplaceHost({
-                replaceString: env == 'local' || env == 'daily' ? '' : jsHost
+                replaceString: env == 'local' || env == 'daily' ? '' : jsPath
             })
         )
 

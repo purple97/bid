@@ -9,11 +9,11 @@ const cwdPath = process.cwd() // 工程项目root path
 const envTypesByOnline = ['production-build', 'tag', 'productionNoTag', 'production', 'gray']
 
 export default parentDirPath => (outputPath, buildConfig) => {
-    const jsHost = `${buildConfig.cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
     const isOnline = envTypesByOnline.indexOf(buildConfig.env) !== -1
     const output = outputPath ? outputPath : './deploy'
-    // const _filename = isOnline ? 'javascripts/build/[name].js' : '[name].js'
-    // console.log(path.resolve(cwdPath, output))
+    const jsHost = `${buildConfig.cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
+    const jsPath = `${jsHost}${output.replace(/^.*\/src/, 'src')}`
+
     return merge(webpackBaseConfig(parentDirPath), {
         mode: 'production',
         performance: performance,
@@ -22,7 +22,7 @@ export default parentDirPath => (outputPath, buildConfig) => {
             path: path.resolve(cwdPath, output),
             filename: '[name].js',
             // chunkFilename: _filename
-            publicPath: isOnline ? jsHost : './'
+            publicPath: isOnline ? jsPath : `./${Utils.getUserConfig.version}/`
         },
         resolve: {
             modules: [path.join(parentDirPath, 'node_modules')]
