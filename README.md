@@ -1,11 +1,3 @@
-<!--
- * @Author: dezhao.chen
- * @Date: 2020-07-10 17:02:25
- * @LastEditors: dezhao.chen
- * @LastEditTime: 2020-08-07 10:21:45
- * @Description: 前端开发脚手架基础库
--->
-
 ## Bid 前端开发脚手架基础库
 
 -   更新日志:[CHANGELOG](./CHANGELOG.md)
