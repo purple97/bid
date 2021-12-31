@@ -82,3 +82,7 @@ import {
 ### merge
 
 -   webpack config 合并方法; 等同于 webpack-merage
+
+## 其他
+
+-   支持 WebAssembly

@@ -1,5 +1,25 @@
 ## 更新日志
 
+## v1.1.2
+
+-   webpack 增加 增加 WebAssembly 支持
+-   增加配置：
+
+```js
+experiments: {
+    asyncWebAssembly: true, // 开启 webpack5 的 asyncWebAssembly 功能
+    syncWebAssembly: true,
+    topLevelAwait: true // 开启 top-level-await
+}
+```
+
+-   使用方式：
+
+```js
+import { HelloWebAssembly } from 'hello-wasm'
+console.log('hello WebAssembly !', HelloWebAssembly())
+```
+
 ## v1.1.0
 
 -   webpack MultiCompiler 方式处理多个页面同时打包

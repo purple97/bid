@@ -28,6 +28,11 @@ export default function(parentDirPath) {
         },
         externals: externalsConfig,
         module: moduleConfig(),
-        resolve: resolveConfig
+        resolve: resolveConfig,
+        experiments: {
+            asyncWebAssembly: true, // 开启 webpack5 的 asyncWebAssembly 功能
+            syncWebAssembly: true,
+            topLevelAwait: true // 开启 top-level-await
+        }
     }
 }
