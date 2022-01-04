@@ -1,10 +1,10 @@
 /*
  * @author:dezhao.chen
  * @Email:10949221@qq.com
- * 工具库、webpack基础配置、bid工具Exprees中间件
+ * 工具库、webpack基础配置、bid工具Express中间件
  * 未经本人允许禁止商业用途
  */
-// console.log('bid-base version:', require('../../package.json').version)
+console.log('bid-base version:', require('../package.json').version)
 export { default as Utils } from './utils/index'
 export { default as getIp } from './utils/getip'
 export { default as Lint } from './actions/lint'
