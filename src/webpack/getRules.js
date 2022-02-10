@@ -11,7 +11,7 @@ export default () => {
     let babelOptions = {
         babelrc: false,
         cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
-        presets: [['@babel/preset-env', { modules: 'commonjs' }], '@babel/preset-react'],
+        presets: [['@babel/preset-env'], '@babel/preset-react'],
         plugins: [
             [
                 'babel-plugin-react-scoped-css',
@@ -36,7 +36,7 @@ export default () => {
                 'babel-plugin-import',
                 {
                     libraryName: 'antd',
-                    libraryDirectory: 'es',
+                    libraryDirectory: 'lib',
                     style: 'css'
                 }
             ]

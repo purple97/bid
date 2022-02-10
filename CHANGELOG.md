@@ -2,7 +2,15 @@
 
 ## v1.1.2
 
+-   修改 babel-plugin-import 的配置：
+
+```
+- libraryDirectory: 'es',
++ libraryDirectory: 'lib',
+```
+
 -   webpack 增加 增加 WebAssembly 支持
+    -   TODO： 打包的 wasm 文件路径问题需要特殊处理，【暂时没有解决办法】
 -   增加配置：
 
 ```js

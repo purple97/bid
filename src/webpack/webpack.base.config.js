@@ -15,7 +15,7 @@ export default function(parentDirPath) {
             path: path.resolve(cwdPath, './build'),
             filename: '[name].js',
             chunkFilename: '[id].[hash:10].js',
-            publicPath: '/'
+            publicPath: './'
         },
         //打包多文件和公共模块配置
         optimization: optimizationConfig,
@@ -28,11 +28,6 @@ export default function(parentDirPath) {
         },
         externals: externalsConfig,
         module: moduleConfig(),
-        resolve: resolveConfig,
-        experiments: {
-            asyncWebAssembly: true, // 开启 webpack5 的 asyncWebAssembly 功能
-            syncWebAssembly: true,
-            topLevelAwait: true // 开启 top-level-await
-        }
+        resolve: resolveConfig
     }
 }
