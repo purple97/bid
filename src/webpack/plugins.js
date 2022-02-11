@@ -8,18 +8,13 @@ import htmlInlineSourceLoaders from '../plugins/html-inline-source-loaders'
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 // import LazyPathPlugin from 'bid-lazy-path-plugin'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
-import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
-import ProgressBar from 'progress-bar-webpack-plugin'
-import WasmModuleWebpackPlugin from 'wasm-module-webpack-plugin'
+// import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+// import ProgressBar from 'progress-bar-webpack-plugin'
 
 const tagVersion = Utils.getUserConfig.version
 
 function setHtmlPlugin(file, env) {
     const isOnline = ['tag', 'productionNoTag', 'production-build', 'production', 'gray'].indexOf(env) !== -1
-    // let chunksName = path.dirname(file) + '/' + tagVersion + '/index'
-    // chunksName = chunksName.replace(/^\.\//, '')
-    // chunksName = isOnline ? chunksName.replace(/[.\d]*\/index/g, 'index') : chunksName;
-    // const _filename = isOnline ? path.join('./html/build', file) : file
     return new HtmlWebpackPlugin({
         version: tagVersion,
         inject: true,
@@ -43,14 +38,14 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         //避免重复的模块
         // new webpack.optimize.DedupePlugin()
         /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
-        new webpack.NoEmitOnErrorsPlugin(),
-        new WasmModuleWebpackPlugin.WebpackPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 
     if (process.env.NODE_ENV != 'dev') {
         if (env == 'local' || env == 'daily' || env == 'production-build') {
-            config.unshift(new ProgressBar())
+            // config.unshift(new ProgressBar())
             // config.push(new CleanWebpackPlugin())
+            config.push(new webpack.ProgressPlugin({ percentBy: 'entries' }))
         }
 
         // config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }))
@@ -70,7 +65,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         )
     } else {
         // config.push(new webpack.NamedModulesPlugin())
-        config.push(new FriendlyErrorsPlugin())
+        // config.push(new FriendlyErrorsPlugin())
     }
     // console.log(config);
     return config

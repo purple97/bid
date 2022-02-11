@@ -8,7 +8,7 @@ const WebpackConfig = parentDirPath => (outputPath, filePath) => {
     const output = outputPath ? outputPath : './build'
     return merge(webpackBaseConfig(parentDirPath), {
         mode: 'development',
-        devtool: 'cheap-module-eval-source-map',
+        devtool: 'eval-cheap-module-source-map',
         entry: {},
         output: {
             path: path.resolve(cwdPath, output),

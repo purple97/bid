@@ -45,10 +45,9 @@ export default () => {
     }
     jsx = {
         test: /\.(js|jsx)$/,
-        include: [dirSrc, /@bairong\//],
+        // include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
         use: [
-            // 'thread-loader',
             {
                 loader: 'babel-loader',
                 options: babelOptions
@@ -58,10 +57,8 @@ export default () => {
 
     tsx = {
         test: /\.(ts|tsx)$/,
-        include: [dirSrc, /@bairong\//],
-        // exclude: /node_modules/,
+        // include: [dirSrc, /@bairong\//],
         use: [
-            // 'thread-loader',
             {
                 loader: 'babel-loader',
                 options: babelOptions
@@ -78,7 +75,6 @@ export default () => {
 
     ejs = {
         test: /\.ejs$/,
-        // exclude: path.resolve(Utils.path.cwdPath, 'node_modules'),
         use: [
             {
                 loader: 'babel-loader',
@@ -89,8 +85,6 @@ export default () => {
     }
     less = {
         test: /\.less$/,
-        // include: [dirSrc, dirNodeModule],
-        // exclude: /node_modules/,
         use: [
             { loader: 'style-loader' },
             { loader: 'css-loader' },
@@ -120,7 +114,6 @@ export default () => {
     css = {
         test: /\.css$/,
         include: [dirSrc, dirNodeModule],
-        // exclude: /node_modules/,
         use: [
             'style-loader',
             {
@@ -133,9 +126,18 @@ export default () => {
         ]
     }
 
+    /* webpack5 自带url-loader功能 */
     file = {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        use: { loader: 'file-loader' }
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        type: 'asset',
+        parser: {
+            dataUrlCondition: {
+                maxSize: 4 * 1024 // 4kb
+            }
+        },
+        generator: {
+            filename: 'static/[hash][ext][query]'
+        }
     }
 
     return [jsx, tsx, ejs, less, css, file]

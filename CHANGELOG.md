@@ -1,5 +1,13 @@
 ## 更新日志
 
+## v1.2.0
+
+-   webpack 升级到 5.68.x 版本
+-   去掉:
+    -   "friendly-errors-webpack-plugin": "^1.7.0"
+    -   "thread-loader": "^2.1.3",
+-   html-webpack-plugin 升级到 5.5.x 版本
+
 ## v1.1.2
 
 -   修改 babel-plugin-import 的配置：
