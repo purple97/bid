@@ -36,7 +36,15 @@ export default () => {
                 'babel-plugin-import',
                 {
                     libraryName: 'antd',
-                    libraryDirectory: 'lib',
+                    libraryDirectory: 'es',
+                    style: 'css'
+                }
+            ],
+            [
+                'babel-plugin-import',
+                {
+                    libraryName: '@bairong/rs-ui',
+                    libraryDirectory: 'es',
                     style: 'css'
                 }
             ]

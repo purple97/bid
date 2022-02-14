@@ -2,20 +2,33 @@
 
 ## v1.1.2
 
--   修改 babel-plugin-import 的配置：
+-   增加 babel-plugin-import 的配置：
 
 ```
-- libraryDirectory: 'es',
-+ libraryDirectory: 'lib',
+[
+    'babel-plugin-import',
+    {
+        libraryName: '@bairong/rs-ui',
+        libraryDirectory: 'es',
+        style: 'css'
+    }
+]
 ```
 
--   webpack 增加 增加 WebAssembly 支持
-    -   TODO： 打包的 wasm 文件路径问题需要特殊处理，【暂时没有解决办法】
--   增加配置：
+-   webpack.{env}.config.js 中, 增加参数 option = {} ，会合并到默认配置中（merge(config, option)）
+-   增加暴露 webpack-merge 的接口，方便自定义配置（mergeWithCustomize, mergeWithRules, unique）
+
+    ```js
+    const { mergeWithCustomize, mergeWithRules, unique } = require('bid-base')
+    ```
+
+-   ~~webpack 增加 增加 WebAssembly 支持~~ (下个版本增加)
+    -   ~~TODO： 打包的 wasm 文件路径问题需要特殊处理，【暂时没有解决办法】~~
+-   ~~增加配置：~~
 
 ```js
 experiments: {
-    asyncWebAssembly: true, // 开启 webpack5 的 asyncWebAssembly 功能
+    asyncWebAssembly: true, // 开启 webpack5 的 WebAssembly 功能
     syncWebAssembly: true,
     topLevelAwait: true // 开启 top-level-await
 }

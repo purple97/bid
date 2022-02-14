@@ -39,7 +39,10 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     const jsPath = jsHost + path.dirname(`${htmlEntry.replace(/^\.\//, '')}`) + `/${Utils.getUserConfig.version}/`
 
     let config = [
-        new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            BUILD_ENV: env
+        }),
         //避免重复的模块
         // new webpack.optimize.DedupePlugin()
         /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
