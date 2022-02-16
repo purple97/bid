@@ -2,6 +2,8 @@
 
 ## v1.1.2
 
+-   html 内嵌 js 内容插件 html-inline-source-loaders 修改,
+    -   transform 改为 transformSync
 -   config.json 增加动态配置 babel-plugin-import. "babelPluginImport"
 
 ```json

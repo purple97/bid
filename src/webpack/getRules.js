@@ -4,17 +4,6 @@ import lessVariableInjection from 'less-variable-injection'
 const dirSrc = path.join(process.cwd(), 'src')
 const dirNodeModule = /node_modules/
 
-let babelPluginImport = [
-    [
-        'babel-plugin-import',
-        {
-            libraryName: 'antd',
-            libraryDirectory: 'es',
-            style: true
-        }
-    ]
-]
-
 function SetBabelPluginImport(pluginsConfig) {
     return pluginsConfig.map(item => {
         let newItem =
@@ -27,6 +16,16 @@ function SetBabelPluginImport(pluginsConfig) {
 
 export default () => {
     const configJson = Utils.getUserConfig
+    let babelPluginImport = [
+        [
+            'babel-plugin-import',
+            {
+                libraryName: 'antd',
+                libraryDirectory: 'es',
+                style: true
+            }
+        ]
+    ]
     if (configJson.babelPluginImport) {
         babelPluginImport = babelPluginImport.concat(SetBabelPluginImport(configJson.babelPluginImport))
     }
