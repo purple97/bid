@@ -2,17 +2,17 @@
 
 ## v1.1.2
 
--   增加 babel-plugin-import 的配置：
+-   config.json 增加动态配置 babel-plugin-import. "babelPluginImport"
 
-```
-[
-    'babel-plugin-import',
-    {
-        libraryName: '@bairong/rs-ui',
-        libraryDirectory: 'es',
-        style: 'css'
-    }
-]
+```json
+{
+    "babelPluginImport": [
+        {
+            "libraryName": "an@bairong/rs-ui",
+            "style": true
+        }
+    ]
+}
 ```
 
 -   webpack.{env}.config.js 中, 增加参数 option = {} ，会合并到默认配置中（merge(config, option)）
