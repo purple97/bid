@@ -41,7 +41,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     let config = [
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            BUILD_ENV: env
+            BUILD_ENV: JSON.stringify(env)
         }),
         //避免重复的模块
         // new webpack.optimize.DedupePlugin()
