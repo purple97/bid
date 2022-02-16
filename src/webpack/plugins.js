@@ -8,7 +8,7 @@ import htmlInlineSourceLoaders from '../plugins/html-inline-source-loaders'
 import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 // import LazyPathPlugin from 'bid-lazy-path-plugin'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
-import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+// import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import ProgressBar from 'progress-bar-webpack-plugin'
 import WasmModuleWebpackPlugin from 'wasm-module-webpack-plugin'
 
@@ -73,7 +73,7 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
         )
     } else {
         // config.push(new webpack.NamedModulesPlugin())
-        config.push(new FriendlyErrorsPlugin())
+        // config.push(new FriendlyErrorsPlugin())
     }
     // console.log(config);
     return config

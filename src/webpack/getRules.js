@@ -4,8 +4,32 @@ import lessVariableInjection from 'less-variable-injection'
 const dirSrc = path.join(process.cwd(), 'src')
 const dirNodeModule = /node_modules/
 
+let babelPluginImport = [
+    [
+        'babel-plugin-import',
+        {
+            libraryName: 'antd',
+            libraryDirectory: 'es',
+            style: true
+        }
+    ]
+]
+
+function SetBabelPluginImport(pluginsConfig) {
+    return pluginsConfig.map(item => {
+        let newItem =
+            typeof item === 'string'
+                ? ['babel-plugin-import', { libraryName: item, libraryDirectory: 'es', style: true }, item]
+                : ['babel-plugin-import', item, item.libraryName]
+        return newItem
+    })
+}
+
 export default () => {
     const configJson = Utils.getUserConfig
+    if (configJson.babelPluginImport) {
+        babelPluginImport = babelPluginImport.concat(SetBabelPluginImport(configJson.babelPluginImport))
+    }
     // const isOnline = env == 'production';
     let jsx, tsx, ejs, less, css, file
     let babelOptions = {
@@ -32,22 +56,7 @@ export default () => {
                     regenerator: true
                 }
             ],
-            [
-                'babel-plugin-import',
-                {
-                    libraryName: 'antd',
-                    libraryDirectory: 'es',
-                    style: 'css'
-                }
-            ],
-            [
-                'babel-plugin-import',
-                {
-                    libraryName: '@bairong/rs-ui',
-                    libraryDirectory: 'es',
-                    style: 'css'
-                }
-            ]
+            ...babelPluginImport
         ],
         cacheDirectory: true
     }
