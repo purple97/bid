@@ -5,6 +5,7 @@
 -   bug fix:
     -   publicPath 导致懒加载模块不能正常加载问题。
     -   uglify-js 报错的问题。
+    -   webpack 版本 指定 4.x 版本
 -   增加 postcss-loader, 并且增加 postcss-pxtorem 插件
     -   需要 config.json 中配置 pxtorm
 
@@ -30,7 +31,7 @@
 {
     "babelPluginImport": [
         {
-            "libraryName": "an@bairong/rs-ui",
+            "libraryName": "@bairong/rs-ui",
             "style": true
         }
     ]

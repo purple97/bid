@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.1.2-beta.6",
+    "version": "1.1.2-beta.7",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
@@ -75,7 +75,7 @@
         "uglify-js": "^3.15.1",
         "urllib": "^2.36.1",
         "wasm-module-webpack-plugin": "^2.0.1",
-        "webpack": ">= 4.x",
+        "webpack": "^4.46.0",
         "webpack-bundle-analyzer": "^3.8.0",
         "webpack-merge": "^5.0.9",
         "webpack-plugin-inline-source": "^1.0.9",
@@ -86,6 +86,6 @@
         "babel-eslint": "^10.1.0"
     },
     "peerDependencies": {
-        "webpack": ">= 4.x"
+        "webpack": "= 4.x"
     }
 }
