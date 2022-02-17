@@ -2,7 +2,9 @@
 
 ## v1.1.2
 
--   bug fix: publicPath 导致懒加载模块不能正常加载问题。
+-   bug fix:
+    -   publicPath 导致懒加载模块不能正常加载问题。
+    -   uglify-js 报错的问题。
 -   增加 postcss-loader, 并且增加 postcss-pxtorem 插件
     -   需要 config.json 中配置 pxtorm
 
