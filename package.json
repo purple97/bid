@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.1.2-beta.7",
+    "version": "1.1.2-beta.8",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
@@ -63,7 +63,7 @@
         "less-variable-injection": "^1.0.0",
         "npm": "^6.14.6",
         "postcss-loader": "^4.3.0",
-        "postcss-pxtorem": "^6.0.0",
+        "postcss-pxtorem": "^5.1.1",
         "progress-bar-webpack-plugin": "^2.1.0",
         "promise": "^8.1.0",
         "scoped-css-loader": "^1.0.0",
@@ -75,7 +75,7 @@
         "uglify-js": "^3.15.1",
         "urllib": "^2.36.1",
         "wasm-module-webpack-plugin": "^2.0.1",
-        "webpack": "^4.46.0",
+        "webpack": "= 4.x",
         "webpack-bundle-analyzer": "^3.8.0",
         "webpack-merge": "^5.0.9",
         "webpack-plugin-inline-source": "^1.0.9",
