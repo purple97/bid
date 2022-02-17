@@ -2,6 +2,23 @@
 
 ## v1.1.2
 
+-   增加 postcss-loader, 并且增加 postcss-pxtorem 插件
+    -   需要 config.json 中配置 pxtorm
+
+```js
+// 三种方式
+{
+    // 使用默认配置开启
+   "pxtorem": true
+   // 指定rootValue的值
+   "pxtorem": 37.5
+   // 覆盖默认配置
+   "pxtorem": {
+       //...
+   }
+}
+```
+
 -   html 内嵌 js 内容插件 html-inline-source-loaders 修改,
     -   transform 改为 transformSync
 -   config.json 增加动态配置 babel-plugin-import. "babelPluginImport"

@@ -13,7 +13,7 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
     const output = outputPath ? outputPath : './deploy'
     const jsHost = `${buildConfig.cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
     const jsPath = `${jsHost}${output.replace(/^.*\/src/, 'src')}`
-
+    const env = !isOnline ? 'daily' : buildConfig.env === 'gray' ? 'gray' : 'production'
     return merge(
         webpackBaseConfig(parentDirPath),
         {
@@ -29,7 +29,7 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
             },
-            plugins: pluginsConfig(buildConfig)
+            plugins: pluginsConfig({ htmlEntry: buildConfig.htmlEntry, env })
         },
         option
     )

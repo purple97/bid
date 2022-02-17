@@ -9,7 +9,7 @@ import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 // import LazyPathPlugin from 'bid-lazy-path-plugin'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
 // import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
-import ProgressBar from 'progress-bar-webpack-plugin'
+// import ProgressBar from 'progress-bar-webpack-plugin'
 import WasmModuleWebpackPlugin from 'wasm-module-webpack-plugin'
 
 const tagVersion = Utils.getUserConfig.version
@@ -34,7 +34,7 @@ function setHtmlPlugin(file, env) {
     })
 }
 
-function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
+function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
     const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
     const jsPath = jsHost + path.dirname(`${htmlEntry.replace(/^\.\//, '')}`) + `/${Utils.getUserConfig.version}/`
 
@@ -51,11 +51,6 @@ function getPlugins({ htmlEntry, env = 'local', cdnhost }) {
     ]
 
     if (process.env.NODE_ENV != 'dev') {
-        if (env == 'local' || env == 'daily' || env == 'production-build') {
-            config.unshift(new ProgressBar())
-            // config.push(new CleanWebpackPlugin())
-        }
-
         // config.push(new LazyPathPlugin({ version: tagVersion, jsHost, env }))
         config.push(setHtmlPlugin(htmlEntry, env))
 

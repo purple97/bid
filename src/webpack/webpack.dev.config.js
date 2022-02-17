@@ -6,6 +6,7 @@ const cwdPath = process.cwd() // 工程项目root path
 
 const WebpackConfig = (parentDirPath, option = {}) => (outputPath, filePath) => {
     const output = outputPath ? outputPath : './build'
+    const env = 'local'
     return merge(
         webpackBaseConfig(parentDirPath),
         {
@@ -21,7 +22,7 @@ const WebpackConfig = (parentDirPath, option = {}) => (outputPath, filePath) => 
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
             },
-            plugins: pluginsConfig({ htmlEntry: filePath, env: 'dev' })
+            plugins: pluginsConfig({ htmlEntry: filePath, env })
         },
         option
     )
