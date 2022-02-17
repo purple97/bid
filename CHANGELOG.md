@@ -2,6 +2,7 @@
 
 ## v1.1.2
 
+-   新增构建时的变量：BUILD_ENV <'local' | 'daily' | 'gray' | 'production'>
 -   bug fix:
     -   publicPath 导致懒加载模块不能正常加载问题。
     -   uglify-js 报错的问题。
