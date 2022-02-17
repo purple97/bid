@@ -24,7 +24,7 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
                 path: path.resolve(cwdPath, output),
                 filename: '[name].js',
                 // chunkFilename: _filename
-                publicPath: isOnline ? jsPath : `./${Utils.getUserConfig.version}/`
+                publicPath: isOnline ? jsPath + '/' : `./${Utils.getUserConfig.version}/`
             },
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
