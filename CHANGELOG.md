@@ -1,5 +1,21 @@
 ## 更新日志
 
+## v1.1.3
+
+-   1.1.3
+-   更新依赖:
+    -   http-proxy-middleware -> 2.0.3
+    -   urllib -> 2.38.0
+    -   less -> 4.1.2
+    -   less-loader -> 10.2.0
+-   删除依赖:
+    -   wasm-module-webpack-plugin
+    -   @wasm-tool/wasm-pack-plugin
+-   新增依赖:
+    -   tailwindcss
+    -   wasm-loader
+-   新增功能: tailwindcss, https://tailwindcss.com/
+
 ## v1.1.2
 
 -   新增构建时的变量：BUILD_ENV <'local' | 'daily' | 'gray' | 'production'>, 可以通过该变量屏蔽构建的

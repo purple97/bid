@@ -31,7 +31,7 @@ export default () => {
         babelPluginImport = babelPluginImport.concat(SetBabelPluginImport(configJson.babelPluginImport))
     }
     // const isOnline = env == 'production';
-    let jsx, tsx, ejs, less, css, file
+    let jsx, tsx, ejs, less, css, wasm, file
     let babelOptions = {
         babelrc: false,
         cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
@@ -179,10 +179,17 @@ export default () => {
         css.use.splice(3, 0, postcssLoaderConfig)
     }
 
+    //处理.wasm文件
+    wasm = {
+        test: /\.wasm$/,
+        type: 'javascript/auto',
+        use: ['wasm-loader']
+    }
+
     file = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: { loader: 'file-loader' }
     }
 
-    return [jsx, tsx, ejs, less, css, file]
+    return [jsx, tsx, ejs, less, css, wasm, file]
 }
