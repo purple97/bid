@@ -52,6 +52,7 @@
         "fs-extra": "^0.30.0",
         "git-tools": "^0.3.0",
         "html-webpack-plugin": "3.2.0",
+        "html-webpack-replace-host": "^1.0.8",
         "http-proxy-middleware": "^1.0.5",
         "inquirer": "^7.3.2",
         "less": "^3.12.0",
@@ -75,6 +76,7 @@
         "webpack": "= 4.x",
         "webpack-bundle-analyzer": "^3.8.0",
         "webpack-merge": "^5.0.9",
+        "webpack-plugin-inline-source": "^1.0.8",
         "wide-align": "^1.1.3"
     },
     "devDependencies": {
