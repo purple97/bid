@@ -15,6 +15,20 @@
     -   tailwindcss
     -   wasm-loader
 -   新增功能: tailwindcss, https://tailwindcss.com/
+-   业务工程根目录增加 tailwind.config.js 文件, 基础配置如下:
+
+```js
+module.exports = {
+    darkMode: 'media', // or 'media' or 'class'
+    theme: {
+        extend: {}
+    },
+    variants: {
+        extend: {}
+    },
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/*.{htm,html}']
+}
+```
 
 ## v1.1.2
 

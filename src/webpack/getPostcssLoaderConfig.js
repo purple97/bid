@@ -1,9 +1,9 @@
 import pxtorem from 'postcss-pxtorem'
-import tailwindcss from 'tailwindcss'
-import postcssImport from 'postcss-import'
+
+export { default as tailwindcss } from 'tailwindcss'
 
 /* postcss plugin： px to rem  */
-export function pluginPxtorem(value) {
+export function getPluginPxtorem(value) {
     const pxtoremConfig = {
         rootValue: 37.5,
         propList: ['*'],
@@ -21,12 +21,12 @@ export function pluginPxtorem(value) {
 }
 
 /* 生成postcss-loader相关配置 */
-function getPostcssLoaderConfig(configJson, plugins = []) {
+export function getPostcssLoaderConfig(plugins = []) {
     const postcssLoaderConfig = {
         loader: 'postcss-loader',
         options: {
             postcssOptions: {
-                plugins: [...plugins, pluginPxtorem(configJson.pxtorem), postcssImport, tailwindcss]
+                plugins: [...plugins]
             }
         }
     }

@@ -1,7 +1,7 @@
 import path from 'path'
 import Utils from '../utils/'
 import lessVariableInjection from 'less-variable-injection'
-import getPostcssLoaderConfig from './getPostcssLoaderConfig'
+import getPostcssLoaderConfig, { getPluginPxtorem, tailwindcss } from './getPostcssLoaderConfig'
 
 const dirSrc = path.join(process.cwd(), 'src')
 const dirNodeModule = /node_modules/
@@ -151,10 +151,17 @@ export default () => {
         ]
     }
 
+    const postcssPlugins = []
     //开启 px 转 rem
     if (configJson.pxtorem) {
-        console.info('启用postcss-loader')
-        const postcssLoaderConfig = getPostcssLoaderConfig(configJson)
+        postcssPlugins.push(getPluginPxtorem(configJson.pxtorem))
+    }
+    //开启 tailwindcss
+    if (Utils.tailwindcss) {
+        postcssPlugins.push(tailwindcss)
+    }
+    if (postcssPlugins.length > 0) {
+        const postcssLoaderConfig = getPostcssLoaderConfig(postcssPlugins)
         less.use.splice(3, 0, postcssLoaderConfig)
         css.use.splice(3, 0, postcssLoaderConfig)
     }
