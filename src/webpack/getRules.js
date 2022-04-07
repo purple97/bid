@@ -1,7 +1,8 @@
 import path from 'path'
 import Utils from '../utils/'
-import pxtorem from 'postcss-pxtorem'
 import lessVariableInjection from 'less-variable-injection'
+import getPostcssLoaderConfig from './getPostcssLoaderConfig'
+
 const dirSrc = path.join(process.cwd(), 'src')
 const dirNodeModule = /node_modules/
 
@@ -153,28 +154,7 @@ export default () => {
     //开启 px 转 rem
     if (configJson.pxtorem) {
         console.info('启用postcss-loader')
-        const postcssLoaderConfig = {
-            loader: 'postcss-loader',
-            options: {
-                postcssOptions: {
-                    plugins: []
-                }
-            }
-        }
-        const pxtoremConfig = {
-            rootValue: 37.5,
-            propList: ['*'],
-            exclude: /node_modules/i
-        }
-
-        if (configJson.pxtorem === true) {
-            postcssLoaderConfig.options.postcssOptions.plugins.push(pxtorem(pxtoremConfig))
-        } else if (typeof configJson.pxtorem === 'number') {
-            pxtoremConfig.rootValue = configJson.pxtorem
-            postcssLoaderConfig.options.postcssOptions.plugins.push(pxtorem(pxtoremConfig))
-        } else {
-            postcssLoaderConfig.options.postcssOptions.plugins.push(pxtorem(Object.assign(pxtoremConfig, configJson.pxtorem)))
-        }
+        const postcssLoaderConfig = getPostcssLoaderConfig(configJson)
         less.use.splice(3, 0, postcssLoaderConfig)
         css.use.splice(3, 0, postcssLoaderConfig)
     }
