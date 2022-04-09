@@ -11,6 +11,20 @@
 -   删除依赖:
     -   wasm-module-webpack-plugin
     -   @wasm-tool/wasm-pack-plugin
+-   增加别名@src
+
+    -   '@src': path.join(process.cwd(), './src/')
+    -   可以这样用 "@src/xxx/myModule.js"
+    -   还可以组合成新的别名, config.json:
+
+    ```json
+    {
+        "alias": {
+            "@myAlias": "@src/p/xxx"
+        }
+    }
+    ```
+
 -   新增依赖:
     -   tailwindcss
     -   wasm-loader

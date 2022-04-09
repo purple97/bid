@@ -1,5 +1,6 @@
 import path from 'path'
 import Utils from '../utils/'
+
 let alias = Utils.webpack.alias
 
 export default {
