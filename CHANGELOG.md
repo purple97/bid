@@ -2,7 +2,7 @@
 
 ## v1.1.3
 
--   1.1.3 ~ 1.1.3-beta.6
+-   1.1.3 ~ 1.1.3-beta.7
 -   更新依赖:
     -   http-proxy-middleware -> 2.0.3
     -   urllib -> 2.38.0
@@ -48,6 +48,8 @@ module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/*.{htm,html}']
 }
 ```
+
+-   tailwindcss 中 px 没被 pxtorem 插件处理。
 
 ## v1.1.2
 

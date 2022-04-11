@@ -153,14 +153,16 @@ export default () => {
     }
 
     const postcssPlugins = []
-    //开启 px 转 rem
-    if (configJson.pxtorem) {
-        postcssPlugins.push(getPluginPxtorem(configJson.pxtorem))
-    }
+
     //开启 tailwindcss
     if (Utils.tailwindcss) {
         postcssPlugins.push(tailwindcss)
     }
+    //开启 px 转 rem
+    if (configJson.pxtorem) {
+        postcssPlugins.push(getPluginPxtorem(configJson.pxtorem))
+    }
+
     if (postcssPlugins.length > 0) {
         const postcssLoaderConfig = getPostcssLoaderConfig(postcssPlugins)
         less.use.splice(3, 0, postcssLoaderConfig)
