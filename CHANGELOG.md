@@ -29,7 +29,7 @@
     +    math: 'always' // less4.0 后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
         }
     ```
-    -   inline 到 html 中的 less 文件也要处理。（beta.6）
+    -   inline 到 html 中的 less 文件也要处理。（1.1.3-beta.6）
 -   新增依赖:
     -   tailwindcss
     -   wasm-loader
@@ -49,7 +49,8 @@ module.exports = {
 }
 ```
 
--   tailwindcss 中 px 没被 pxtorem 插件处理。
+-   tailwindcss 中 px 没被 pxtorem 插件处理。（1.1.3-beta.7）
+    -   调整插件顺序（从上到下，先进先出）
 
 ## v1.1.2
 
