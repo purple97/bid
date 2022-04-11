@@ -2,7 +2,7 @@
 
 ## v1.1.3
 
--   1.1.3 ~ 1.1.3-beta.5
+-   1.1.3 ~ 1.1.3-beta.6
 -   更新依赖:
     -   http-proxy-middleware -> 2.0.3
     -   urllib -> 2.38.0
@@ -23,10 +23,13 @@
     }
     ```
 -   less-loader 配置修改:
-    lessOptions: {
-    javascriptEnabled: true,
-    math: 'always' // less4.0 后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
-    }
+    ```
+        lessOptions: {
+        javascriptEnabled: true,
+    +    math: 'always' // less4.0 后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
+        }
+    ```
+    -   inline 到 html 中的 less 文件也要处理。（beta.6）
 -   新增依赖:
     -   tailwindcss
     -   wasm-loader
