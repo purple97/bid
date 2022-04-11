@@ -2,7 +2,7 @@
 
 ## v1.1.3
 
--   1.1.3
+-   1.1.3 ~ 1.1.3-beta.5
 -   更新依赖:
     -   http-proxy-middleware -> 2.0.3
     -   urllib -> 2.38.0
@@ -12,11 +12,9 @@
     -   wasm-module-webpack-plugin
     -   @wasm-tool/wasm-pack-plugin
 -   增加别名@src
-
     -   '@src': path.join(process.cwd(), './src/')
     -   可以这样用 "@src/xxx/myModule.js"
     -   还可以组合成新的别名, config.json:
-
     ```json
     {
         "alias": {
@@ -24,7 +22,11 @@
         }
     }
     ```
-
+-   less-loader 配置修改:
+    lessOptions: {
+    javascriptEnabled: true,
+    math: 'always' // less4.0 后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
+    }
 -   新增依赖:
     -   tailwindcss
     -   wasm-loader

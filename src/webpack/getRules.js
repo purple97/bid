@@ -117,7 +117,8 @@ export default () => {
                 loader: 'less-loader',
                 options: {
                     lessOptions: {
-                        javascriptEnabled: true
+                        javascriptEnabled: true,
+                        math: 'always' // less4.0后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
                     }
                 }
             }
