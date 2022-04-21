@@ -51,6 +51,7 @@ module.exports = {
 
 -   tailwindcss 中 px 没被 pxtorem 插件处理。（1.1.3-beta.7）
     -   调整插件顺序（从上到下，先进先出）
+-   增加对 mjs 的支持（1.1.3-beta.8）
 -   config.json 中增加 js、ts 文件处理时候处理依赖的配置。 解决部分依赖库不转 es6、es5 的问题。
 
     -   注意，不要设置“node_modules”
