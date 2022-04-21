@@ -47,6 +47,7 @@ export default () => {
             ['@babel/plugin-proposal-decorators', { legacy: true }],
             '@babel/plugin-proposal-optional-chaining', // 可选链
             '@babel/plugin-proposal-nullish-coalescing-operator', // 双问号
+            '@babel/plugin-proposal-class-static-block', // 静态块
             '@babel/plugin-proposal-class-properties',
             '@babel/plugin-proposal-object-rest-spread',
             'babel-plugin-add-module-exports',
@@ -63,6 +64,7 @@ export default () => {
     }
     jsx = {
         test: /\.(js|jsx)$/,
+        // 部分较新的js库会使用一些es6特新，需要加入到编译中，例如: three.js
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
         use: [
@@ -178,8 +180,28 @@ export default () => {
 
     file = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        use: { loader: 'file-loader' }
+        use: {
+            loader: 'file-loader',
+            options: {
+                esModule: false
+            }
+        }
     }
 
-    return [jsx, tsx, ejs, less, css, wasm, file]
+    const mjs = {
+        test: /\.mjs$/,
+        include: [/node_modules/],
+        type: 'javascript/auto'
+    }
+
+    /* 部分依赖是需要babel转义，可以通过config.js配置 */
+    if (configJson.include) {
+        const includes = configJson.include.map(item => new RegExp(item))
+        const setInclude = (oldIncludes, addIncludes) => (!oldIncludes ? addIncludes : [...oldIncludes, ...addIncludes])
+        jsx.include = setInclude(jsx.include, includes)
+        tsx.include = setInclude(tsx.include, includes)
+        // less.include = setInclude(less.include, includes)
+        mjs.include = setInclude(mjs.include, includes)
+    }
+    return [jsx, tsx, mjs, ejs, less, css, wasm, file]
 }

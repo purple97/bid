@@ -10,6 +10,6 @@ export default {
         path.join(Utils.path.rootPath, 'node_modules')
     ],
     //require时候自动补全扩展名;
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.html', '.less', '.css'],
+    extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.html', '.less', '.css'],
     alias: alias // 别名
 }

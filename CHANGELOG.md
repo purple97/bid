@@ -2,7 +2,7 @@
 
 ## v1.1.3
 
--   1.1.3 ~ 1.1.3-beta.7
+-   1.1.3 ~ 1.1.3-beta.8
 -   更新依赖:
     -   http-proxy-middleware -> 2.0.3
     -   urllib -> 2.38.0
@@ -51,6 +51,16 @@ module.exports = {
 
 -   tailwindcss 中 px 没被 pxtorem 插件处理。（1.1.3-beta.7）
     -   调整插件顺序（从上到下，先进先出）
+-   config.json 中增加 js、ts 文件处理时候处理依赖的配置。 解决部分依赖库不转 es6、es5 的问题。
+
+    -   注意，不要设置“node_modules”
+    -   （1.1.3-beta.8）
+
+    ```json
+    {
+        "include": ["/three/"]
+    }
+    ```
 
 ## v1.1.2
 
