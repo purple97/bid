@@ -58,6 +58,7 @@ export default () => {
                     regenerator: true
                 }
             ],
+            'babel-plugin-syntax-dynamic-import',
             ...babelPluginImport
         ],
         cacheDirectory: true
@@ -193,6 +194,11 @@ export default () => {
         include: [/node_modules/],
         type: 'javascript/auto'
     }
+
+    // const content = {
+    //     test: [/.(gltf|l3d|fbx)$/i, /loaddir.png$/i],
+    //     loader: 'content-loader'
+    // }
 
     /* 部分依赖是需要babel转义，可以通过config.js配置 */
     if (configJson.include) {
