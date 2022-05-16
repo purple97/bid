@@ -10,7 +10,7 @@ import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
 // import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 // import ProgressBar from 'progress-bar-webpack-plugin'
-import WasmModuleWebpackPlugin from 'wasm-module-webpack-plugin'
+// import WasmModuleWebpackPlugin from 'wasm-module-webpack-plugin'
 
 const tagVersion = Utils.getUserConfig.version
 
@@ -46,8 +46,7 @@ function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
         //避免重复的模块
         // new webpack.optimize.DedupePlugin()
         /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
-        new webpack.NoEmitOnErrorsPlugin(),
-        new WasmModuleWebpackPlugin.WebpackPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 
     if (process.env.NODE_ENV != 'dev') {

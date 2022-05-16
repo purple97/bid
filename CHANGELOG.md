@@ -1,5 +1,68 @@
 ## 更新日志
 
+## v1.1.3
+
+-   1.1.3 ~ 1.1.3-beta.8
+-   更新依赖:
+    -   http-proxy-middleware -> 2.0.3
+    -   urllib -> 2.38.0
+    -   less -> 4.1.2
+    -   less-loader -> 10.2.0
+-   删除依赖:
+    -   wasm-module-webpack-plugin
+    -   @wasm-tool/wasm-pack-plugin
+-   增加别名@src
+    -   '@src': path.join(process.cwd(), './src/')
+    -   可以这样用 "@src/xxx/myModule.js"
+    -   还可以组合成新的别名, config.json:
+    ```json
+    {
+        "alias": {
+            "@myAlias": "@src/p/xxx"
+        }
+    }
+    ```
+-   less-loader 配置修改:
+    ```
+        lessOptions: {
+        javascriptEnabled: true,
+    +    math: 'always' // less4.0 后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
+        }
+    ```
+    -   inline 到 html 中的 less 文件也要处理。（1.1.3-beta.6）
+-   新增依赖:
+    -   tailwindcss
+    -   wasm-loader
+-   新增功能: tailwindcss, https://tailwindcss.com/
+-   业务工程根目录增加 tailwind.config.js 文件, 基础配置如下:
+
+```js
+module.exports = {
+    darkMode: 'media', // or 'media' or 'class'
+    theme: {
+        extend: {}
+    },
+    variants: {
+        extend: {}
+    },
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/*.{htm,html}']
+}
+```
+
+-   tailwindcss 中 px 没被 pxtorem 插件处理。（1.1.3-beta.7）
+    -   调整插件顺序（从上到下，先进先出）
+-   增加对 mjs 的支持（1.1.3-beta.8）
+-   config.json 中增加 js、ts 文件处理时候处理依赖的配置。 解决部分依赖库不转 es6、es5 的问题。
+
+    -   注意，不要设置“node_modules”
+    -   （1.1.3-beta.8）
+
+    ```json
+    {
+        "include": ["/three/"]
+    }
+    ```
+
 ## v1.1.2
 
 -   新增构建时的变量：BUILD_ENV <'local' | 'daily' | 'gray' | 'production'>, 可以通过该变量屏蔽构建的

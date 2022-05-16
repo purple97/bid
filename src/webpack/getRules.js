@@ -1,7 +1,8 @@
 import path from 'path'
 import Utils from '../utils/'
-import pxtorem from 'postcss-pxtorem'
 import lessVariableInjection from 'less-variable-injection'
+import getPostcssLoaderConfig, { getPluginPxtorem, tailwindcss } from './getPostcssLoaderConfig'
+
 const dirSrc = path.join(process.cwd(), 'src')
 const dirNodeModule = /node_modules/
 
@@ -31,7 +32,7 @@ export default () => {
         babelPluginImport = babelPluginImport.concat(SetBabelPluginImport(configJson.babelPluginImport))
     }
     // const isOnline = env == 'production';
-    let jsx, tsx, ejs, less, css, file
+    let jsx, tsx, ejs, less, css, wasm, file
     let babelOptions = {
         babelrc: false,
         cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
@@ -46,6 +47,7 @@ export default () => {
             ['@babel/plugin-proposal-decorators', { legacy: true }],
             '@babel/plugin-proposal-optional-chaining', // 可选链
             '@babel/plugin-proposal-nullish-coalescing-operator', // 双问号
+            '@babel/plugin-proposal-class-static-block', // 静态块
             '@babel/plugin-proposal-class-properties',
             '@babel/plugin-proposal-object-rest-spread',
             'babel-plugin-add-module-exports',
@@ -56,12 +58,14 @@ export default () => {
                     regenerator: true
                 }
             ],
+            'babel-plugin-syntax-dynamic-import',
             ...babelPluginImport
         ],
         cacheDirectory: true
     }
     jsx = {
         test: /\.(js|jsx)$/,
+        // 部分较新的js库会使用一些es6特新，需要加入到编译中，例如: three.js
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
         use: [
@@ -116,7 +120,8 @@ export default () => {
                 loader: 'less-loader',
                 options: {
                     lessOptions: {
-                        javascriptEnabled: true
+                        javascriptEnabled: true,
+                        math: 'always' // less4.0后默认不开启，需要手动开启， https://lesscss.org/usage/#less-options-math
                     }
                 }
             }
@@ -150,39 +155,59 @@ export default () => {
         ]
     }
 
+    const postcssPlugins = []
+
+    //开启 tailwindcss
+    if (Utils.tailwindcss) {
+        postcssPlugins.push(tailwindcss)
+    }
     //开启 px 转 rem
     if (configJson.pxtorem) {
-        console.info('启用postcss-loader')
-        const postcssLoaderConfig = {
-            loader: 'postcss-loader',
-            options: {
-                postcssOptions: {
-                    plugins: []
-                }
-            }
-        }
-        const pxtoremConfig = {
-            rootValue: 37.5,
-            propList: ['*'],
-            exclude: /node_modules/i
-        }
+        postcssPlugins.push(getPluginPxtorem(configJson.pxtorem))
+    }
 
-        if (configJson.pxtorem === true) {
-            postcssLoaderConfig.options.postcssOptions.plugins.push(pxtorem(pxtoremConfig))
-        } else if (typeof configJson.pxtorem === 'number') {
-            pxtoremConfig.rootValue = configJson.pxtorem
-            postcssLoaderConfig.options.postcssOptions.plugins.push(pxtorem(pxtoremConfig))
-        } else {
-            postcssLoaderConfig.options.postcssOptions.plugins.push(pxtorem(Object.assign(pxtoremConfig, configJson.pxtorem)))
-        }
+    if (postcssPlugins.length > 0) {
+        const postcssLoaderConfig = getPostcssLoaderConfig(postcssPlugins)
         less.use.splice(3, 0, postcssLoaderConfig)
         css.use.splice(3, 0, postcssLoaderConfig)
     }
 
-    file = {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        use: { loader: 'file-loader' }
+    //处理.wasm文件
+    wasm = {
+        test: /\.wasm$/,
+        type: 'javascript/auto',
+        use: ['wasm-loader']
     }
 
-    return [jsx, tsx, ejs, less, css, file]
+    file = {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: {
+            loader: 'file-loader',
+            options: {
+                esModule: false
+            }
+        }
+    }
+
+    const mjs = {
+        test: /\.mjs$/,
+        include: [/node_modules/],
+        type: 'javascript/auto'
+    }
+
+    // const content = {
+    //     test: [/.(gltf|l3d|fbx)$/i, /loaddir.png$/i],
+    //     loader: 'content-loader'
+    // }
+
+    /* 部分依赖是需要babel转义，可以通过config.js配置 */
+    if (configJson.include) {
+        const includes = configJson.include.map(item => new RegExp(item))
+        const setInclude = (oldIncludes, addIncludes) => (!oldIncludes ? addIncludes : [...oldIncludes, ...addIncludes])
+        jsx.include = setInclude(jsx.include, includes)
+        tsx.include = setInclude(tsx.include, includes)
+        // less.include = setInclude(less.include, includes)
+        mjs.include = setInclude(mjs.include, includes)
+    }
+    return [jsx, tsx, mjs, ejs, less, css, wasm, file]
 }
