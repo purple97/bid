@@ -28,6 +28,10 @@ function setHtmlPlugin(file, env) {
             collapseWhitespace: true,
             removeComments: true
         },
+        meta: {
+            env: env,
+            'update-time': { 'update-time': new Date().toLocaleString() }
+        },
         path: path.resolve(process.cwd(), './deploy', isOnline ? './html/build' : './build'),
         filename: file,
         template: path.resolve(file)

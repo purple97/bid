@@ -3,6 +3,13 @@
 ## v1.1.4
 
 -   bug fix， config.json 中自定义别名，会在 bid dev 的时候被改为本地路径.
+-   html-webpack-plugin 的 head 中增加环境及变量、构建时间:
+    ```js
+    meta: {
+            env: env,
+            'update-time': { 'update-time': new Date().toLocaleString() }
+        }
+    ```
 
 ## v1.1.3
 
