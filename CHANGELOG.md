@@ -2,6 +2,7 @@
 
 ## v1.1.4
 
+-   1.1.4~1.1.4-beta.x
 -   bug fix， config.json 中自定义别名，会在 bid dev 的时候被改为本地路径.
 -   html-webpack-plugin 的 head 中增加环境及变量、构建时间:
     ```js
@@ -10,6 +11,13 @@
             'update-time': { 'update-time': new Date().toLocaleString() }
         }
     ```
+-   (v1.1.4-beta.3)
+-   解决 npm 8.x 版本下部分包找不到依赖的问题：
+    ```
+    ERROR in ./node_modules/antd-mobile/es/components/center-popup/center-popup.js
+    Module not found: Error: Can't resolve '@react-spring/web' in 'xxx/node_modules/antd-mobile/es/components/center-popup'
+    ```
+    -   修改：webpack/resolve.js，增加 'node_modules'
 
 ## v1.1.3
 
