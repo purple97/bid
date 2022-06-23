@@ -6,6 +6,24 @@ import colors from 'cli-color'
 const CWDPATH = process.cwd()
 let gitRopo = new Repo(process.cwd())
 
+function getGitBranchVersion() {
+    return new Promise((resolve, reject) => {
+        gitRopo.currentBranch((error, value) => {
+            if (error) {
+                reject(JSON.stringify(error))
+            } else {
+                let reg = /\d+\.\d+\.\d+$/
+                if (reg.test(value)) {
+                    let branch = value.match(reg)[0]
+                    resolve(branch)
+                } else {
+                    reject('请在分支下进行开发: daily/x.y.z')
+                }
+            }
+        })
+    })
+}
+
 const setVersion = userConfig => () => {
     let config = userConfig
     let version = config.version
@@ -139,5 +157,6 @@ const setVersionThunk = userConfig => (tagBranch, callback) => {
 }
 export default userConfig => ({
     setConfigVersion: setVersion(userConfig),
-    setConfigVersionThunk: setVersionThunk(userConfig)
+    setConfigVersionThunk: setVersionThunk(userConfig),
+    getGitBranchVersion
 })

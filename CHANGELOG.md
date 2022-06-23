@@ -18,6 +18,8 @@
     Module not found: Error: Can't resolve '@react-spring/web' in 'xxx/node_modules/antd-mobile/es/components/center-popup'
     ```
     -   修改：webpack/resolve.js，增加 'node_modules'
+-   (v1.1.4-beta.4)
+-   增加 getGitBranchVersion 方法，获取当前分支的版本号； getGitBranchVersion()=>Promise<string>
 
 ## v1.1.3
 

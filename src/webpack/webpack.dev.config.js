@@ -1,5 +1,6 @@
 import path from 'path'
 import pluginsConfig from './plugins'
+import { getExternals } from './externals'
 import { merge } from 'webpack-merge'
 import webpackBaseConfig from './webpack.base.config'
 const cwdPath = process.cwd() // 工程项目root path
@@ -22,6 +23,7 @@ const WebpackConfig = (parentDirPath, option = {}) => (outputPath, filePath) => 
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
             },
+            externals: getExternals(env),
             plugins: pluginsConfig({ htmlEntry: filePath, env })
         },
         option

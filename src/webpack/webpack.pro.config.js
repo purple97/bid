@@ -2,6 +2,7 @@ import path from 'path'
 import Utils from '../utils/'
 import pluginsConfig from './plugins'
 import performance from './performance'
+import { getExternals } from './externals'
 import { merge } from 'webpack-merge'
 import webpackBaseConfig from './webpack.base.config'
 
@@ -29,6 +30,7 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
             },
+            externals: getExternals(env),
             plugins: pluginsConfig({ htmlEntry: buildConfig.htmlEntry, env })
         },
         option

@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.1.4-beta.3",
+    "version": "1.1.4-beta.4",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
@@ -81,7 +81,7 @@
         "webpack": "= 4.x",
         "webpack-bundle-analyzer": "^3.8.0",
         "webpack-merge": "^5.0.9",
-        "webpack-plugin-inline-source": "^1.0.9",
+        "webpack-plugin-inline-source": "^1.0.10",
         "wide-align": "^1.1.3"
     },
     "devDependencies": {

@@ -1,7 +1,6 @@
 import path from 'path'
 import moduleConfig from './module'
 import resolveConfig from './resolve'
-import externalsConfig from './externals'
 import optimizationConfig from './optimization'
 const cwdPath = process.cwd() // 工程项目root path
 
@@ -26,7 +25,6 @@ export default function(parentDirPath) {
                 path.join(parentDirPath, 'node_modules')
             ]
         },
-        externals: externalsConfig,
         module: moduleConfig(),
         resolve: resolveConfig
     }
