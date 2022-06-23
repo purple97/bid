@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.1.4-beta.4",
+    "version": "1.1.4-beta.5",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
