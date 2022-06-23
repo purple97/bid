@@ -12,6 +12,7 @@
 # 依赖包安装列表
 yarn.lock
 yarn-error.log
+package-look.json
 
 # 其他
 .gitignore
