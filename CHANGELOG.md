@@ -20,6 +20,7 @@
     -   修改：webpack/resolve.js，增加 'node_modules'
 -   (v1.1.4-beta.4)
 -   增加 getGitBranchVersion 方法，获取当前分支的版本号； getGitBranchVersion()=>Promise<string>
+-   html 文件中 script、link 标签支持 data-src, 发布时替换成 src。
 
 ## v1.1.3
 
