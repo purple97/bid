@@ -27,7 +27,6 @@ export default function(parentDirPath) {
                 path.join(parentDirPath, 'node_modules')
             ]
         },
-        externals: externalsConfig,
         module: moduleConfig(),
         resolve: resolveConfig,
         experiments: {

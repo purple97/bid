@@ -1,6 +1,7 @@
 import path from 'path'
 import webpack from 'webpack'
 // import pluginsConfig from './plugins';
+import { getExternals } from './externals'
 import { merge } from 'webpack-merge'
 import webpackBaseConfig from './webpack.base.config'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
@@ -28,6 +29,7 @@ const WebpackConfig = parentDirPath => outputPath => {
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
             },
+            externals: getExternals('daily'),
             plugins: [
                 new BundleAnalyzerPlugin(analyzerConfig),
                 new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),

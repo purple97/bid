@@ -12,6 +12,8 @@
 # 依赖包安装列表
 yarn.lock
 yarn-error.log
+package-look.json
+pnpm-lock.yaml
 
 # 其他
 .gitignore

@@ -1,9 +1,9 @@
 import path from 'path'
-import { transform } from '@babel/core'
+import { transformSync } from '@babel/core'
 import UglifyJs from 'uglify-js'
 
 const jsRules = function(code) {
-    return transform(code, {
+    return transformSync(code, {
         cwd: path.resolve(__dirname, 'node_modules'),
         presets: ['@babel/preset-env'],
         plugins: [
