@@ -12,7 +12,7 @@ const WebpackConfig = (parentDirPath, option = {}) => (outputPath, filePath) => 
         webpackBaseConfig(parentDirPath),
         {
             mode: 'development',
-            devtool: 'cheap-module-eval-source-map',
+            devtool: 'eval-source-map', // webpack5属性
             entry: {},
             output: {
                 path: path.resolve(cwdPath, output),

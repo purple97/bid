@@ -9,7 +9,6 @@ export default function(parentDirPath) {
     //
     return {
         mode: 'production',
-        // devtool: 'eval', // webpack5属性
         target: ['web', 'es5'], // webpack5属性
         entry: {},
         output: {

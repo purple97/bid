@@ -18,7 +18,7 @@ const WebpackConfig = parentDirPath => outputPath => {
     return smp.wrap(
         merge(webpackBaseConfig(parentDirPath), {
             mode: 'development',
-            devtool: 'eval-cheap-module-source-map',
+            devtool: 'eval-source-map',
             entry: {},
             output: {
                 path: path.resolve(cwdPath, output),

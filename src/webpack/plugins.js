@@ -39,7 +39,7 @@ function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
             BUILD_ENV: JSON.stringify(env)
         }),
         //避免重复的模块
-        new webpack.optimize.DedupePlugin(),
+        // new webpack.optimize.DedupePlugin(),
         /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
         new webpack.NoEmitOnErrorsPlugin()
     ]

@@ -59,7 +59,7 @@ export default () => {
                 }
             ],
             'babel-plugin-syntax-dynamic-import',
-            'babel-plugin-syntax-async-functions'
+            'babel-plugin-syntax-async-functions',
             ...babelPluginImport
         ],
         cacheDirectory: true
