@@ -13,6 +13,8 @@
 -   开启了 optimization, 分离代码；
     -   dev 环境下没有使用 html-webpack-plugin, 无法自动引入分离的包;
     -   只在构建发布的时候开启分离 功能;
+-   webpack5 剔除 node 核心库，需要自行引入（Error Message： webpack < 5 used to include polyfills for node.js core modules by default.）
+    -node-polyfill-webpack-plugin 插件解决
 
 ---
 

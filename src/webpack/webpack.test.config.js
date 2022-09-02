@@ -6,6 +6,7 @@ import { getExternals } from './externals'
 import { merge } from 'webpack-merge'
 import webpackBaseConfig from './webpack.base.config'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
+import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 const cwdPath = process.cwd() // 工程项目root path
 const analyzerConfig = {
@@ -35,7 +36,8 @@ const WebpackConfig = parentDirPath => outputPath => {
             plugins: [
                 new BundleAnalyzerPlugin(analyzerConfig),
                 new webpack.DefinePlugin({ NODE_ENV: JSON.stringify(process.env.NODE_ENV) }),
-                new webpack.NoEmitOnErrorsPlugin()
+                new webpack.NoEmitOnErrorsPlugin(),
+                new NodePolyfillPlugin()
             ]
         })
     )
