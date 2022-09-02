@@ -1,6 +1,7 @@
 import path from 'path'
 import webpack from 'webpack'
 // import pluginsConfig from './plugins';
+import optimization from './optimization'
 import { getExternals } from './externals'
 import { merge } from 'webpack-merge'
 import webpackBaseConfig from './webpack.base.config'
@@ -29,6 +30,7 @@ const WebpackConfig = parentDirPath => outputPath => {
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]
             },
+            optimization: optimization,
             externals: getExternals('daily'),
             plugins: [
                 new BundleAnalyzerPlugin(analyzerConfig),

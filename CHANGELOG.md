@@ -6,7 +6,13 @@
 -   去掉:
     -   "friendly-errors-webpack-plugin": "^1.7.0"
     -   "thread-loader": "^2.1.3",
+    -   "html-webpack-replace-host": "^1.1.0",
 -   html-webpack-plugin 升级到 5.5.x 版本
+-   TODO: dev 环境一下开始 html-webpack-plugin 插件报错，原因待查；
+-   webpack-plugin-inline-source 升级到 1.1.0.beta-1
+-   开启了 optimization, 分离代码；
+    -   dev 环境下没有使用 html-webpack-plugin, 无法自动引入分离的包;
+    -   只在构建发布的时候开启分离 功能;
 
 ---
 

@@ -2,23 +2,21 @@ import path from 'path'
 import moduleConfig from './module'
 import resolveConfig from './resolve'
 import externalsConfig from './externals'
-// import optimizationConfig from './optimization'
+
 const cwdPath = process.cwd() // 工程项目root path
 
 export default function(parentDirPath) {
     //
     return {
         mode: 'production',
-        target: ['web', 'es5'], // webpack5属性
+        target: 'web', // webpack5属性
         entry: {},
         output: {
             path: path.resolve(cwdPath, './build'),
             filename: '[name].js',
-            chunkFilename: '[id].[hash:10].js',
+            chunkFilename: '[id].[contenthash:10].js', // hash | chunkhash | contenthash
             publicPath: './'
         },
-        //打包多文件和公共模块配置
-        // optimization: optimizationConfig, // webpack5下部分被废弃
         resolveLoader: {
             modules: [
                 path.join(cwdPath, 'node_modules'),
