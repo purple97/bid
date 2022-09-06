@@ -15,6 +15,13 @@
     -   只在构建发布的时候开启分离 功能;
 -   webpack5 剔除 node 核心库，需要自行引入（Error Message： webpack < 5 used to include polyfills for node.js core modules by default.）
     -node-polyfill-webpack-plugin 插件解决
+-   【注意】，webpack.base.config.js 中增加以下修改，可能会引起 npm6.x、npm8.x、pnpm7.x 安装的 br-bid 找不到依赖。
+
+    ```js
+    Utils.setParentDir(parentDirPath) //设置br-bid所在目录， 方便babel-loader查找相关依赖
+    ```
+
+    -   以上修改需反复测试; （v1.2.0-beta.2）
 
 ---
 
