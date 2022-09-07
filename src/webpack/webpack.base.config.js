@@ -7,11 +7,11 @@ import externalsConfig from './externals'
 const cwdPath = process.cwd() // 工程项目root path
 
 export default function(parentDirPath) {
-    Utils.setParentDir(parentDirPath) //设置br-bid所在目录， 方便babel-loader查找相关依赖
+    // Utils.setParentDir(parentDirPath) //设置br-bid所在目录， 方便babel-loader查找相关依赖
     //
     return {
         mode: 'production',
-        target: 'web', // webpack5属性
+        target: ['web', 'es5'], // webpack5属性
         entry: {},
         output: {
             path: path.resolve(cwdPath, './build'),

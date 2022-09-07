@@ -6,7 +6,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import htmlInlineSourceLoaders from '../plugins/html-inline-source-loaders'
 // import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
+// import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
 
 const tagVersion = Utils.getUserConfig.version
 
@@ -41,13 +41,13 @@ function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(process.env.NODE_ENV),
             BUILD_ENV: JSON.stringify(env)
-        }),
+        })
         //避免重复的模块
         // new webpack.optimize.DedupePlugin(),
         /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
         // new webpack.NoEmitOnErrorsPlugin(),
         // 解决问题：webpack < 5 used to include polyfills for node.js core modules by default.
-        new NodePolyfillPlugin()
+        // new NodePolyfillPlugin()
     ]
 
     if (env == 'local' || env == 'daily' || env == 'production-build') {

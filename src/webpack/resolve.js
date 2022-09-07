@@ -2,7 +2,19 @@ import path from 'path'
 import Utils from '../utils/'
 
 let alias = Utils.webpack.alias
-
+// 忽略部分node模块
+const nodeAlias = {
+    assert: false,
+    url: false,
+    http: false,
+    https: false,
+    tty: false,
+    stream: false,
+    os: false,
+    util: false,
+    zlib: false,
+    querystring: false
+}
 export default {
     modules: [
         path.join(Utils.path.cwdPath, 'src'),
@@ -12,5 +24,6 @@ export default {
     ],
     //require时候自动补全扩展名;
     extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.html', '.less', '.css'],
-    alias: alias // 别名
+    alias: alias, // 别名
+    fallback: nodeAlias
 }
