@@ -22,6 +22,7 @@
     -   所有引入的依赖必须构建成 web 版本
 -   配置 target: ['web', 'es5']， 未开启'es5' 会导致不转箭头函数等 es6 语法。
 -   参考 react-script 优化配置 https://github.com/facebook/create-react-app/blob/main/packages/react-scripts/config/webpack.config.js
+-   babel-loader 需要加载的插件都使用 require()方式加载。(v1.2.0-beta.4)
 
 ---
 

@@ -10,8 +10,8 @@ function SetBabelPluginImport(pluginsConfig) {
     return pluginsConfig.map(item => {
         let newItem =
             typeof item === 'string'
-                ? ['babel-plugin-import', { libraryName: item, libraryDirectory: 'es', style: true }, item]
-                : ['babel-plugin-import', item, item.libraryName]
+                ? [require('babel-plugin-import'), { libraryName: item, libraryDirectory: 'es', style: true }, item]
+                : [require('babel-plugin-import'), item, item.libraryName]
         return newItem
     })
 }
@@ -20,7 +20,7 @@ export default () => {
     const configJson = Utils.getUserConfig
     let babelPluginImport = [
         [
-            'babel-plugin-import',
+            require('babel-plugin-import'),
             {
                 libraryName: 'antd',
                 libraryDirectory: 'es',
@@ -37,30 +37,30 @@ export default () => {
         babelrc: false,
         // cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
         cwd: Utils.path.parentDir,
-        presets: [['@babel/preset-env' /* { modules: 'commonjs' } */], '@babel/preset-react'],
+        presets: [[require('@babel/preset-env') /* { modules: 'commonjs' } */], require('@babel/preset-react')],
         plugins: [
             [
-                'babel-plugin-react-scoped-css',
+                require('babel-plugin-react-scoped-css'),
                 {
                     include: '.scoped.(le|c)ss$'
                 }
             ],
-            ['@babel/plugin-proposal-decorators', { legacy: true }],
-            '@babel/plugin-proposal-optional-chaining', // 可选链
-            '@babel/plugin-proposal-nullish-coalescing-operator', // 双问号
-            '@babel/plugin-proposal-class-static-block', // 静态块
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-proposal-object-rest-spread',
-            'babel-plugin-add-module-exports',
+            [require('@babel/plugin-proposal-decorators'), { legacy: true }],
+            require('@babel/plugin-proposal-optional-chaining'), // 可选链
+            require('@babel/plugin-proposal-nullish-coalescing-operator'), // 双问号
+            require('@babel/plugin-proposal-class-static-block'), // 静态块
+            require('@babel/plugin-proposal-class-properties'),
+            require('@babel/plugin-proposal-object-rest-spread'),
+            require('babel-plugin-add-module-exports'),
             [
-                '@babel/plugin-transform-runtime',
+                require('@babel/plugin-transform-runtime'),
                 {
                     helpers: false,
                     regenerator: true
                 }
             ],
-            'babel-plugin-syntax-dynamic-import',
-            'babel-plugin-syntax-async-functions',
+            require('babel-plugin-syntax-dynamic-import'),
+            require('babel-plugin-syntax-async-functions'),
             ...babelPluginImport
         ],
         cacheDirectory: true
