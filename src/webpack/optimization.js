@@ -1,5 +1,12 @@
+import TerserPlugin from 'terser-webpack-plugin'
+
 export default {
     // runtimeChunk: true,
+    minimizer: [
+        new TerserPlugin({
+            extractComments: false
+        })
+    ],
     splitChunks: {
         chunks: 'all',
         minChunks: 1,

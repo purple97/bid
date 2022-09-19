@@ -4,9 +4,7 @@ import webpack from 'webpack'
 import Utils from '../utils'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import htmlInlineSourceLoaders from '../plugins/html-inline-source-loaders'
-// import HtmlWebpackReplaceHost from 'html-webpack-replace-host'
 import HtmlWebpackInlineSourcePlugin from 'webpack-plugin-inline-source'
-// import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
 
 const tagVersion = Utils.getUserConfig.version
 
@@ -17,7 +15,7 @@ function setHtmlPlugin(file, env) {
     return new HtmlWebpackPlugin({
         version: tagVersion,
         inject: 'body', // true | 'head' | 'body' ， 主js插入位置(head \ body)
-        hash: true, // true | false, 插入的js文件src后面增加?[hash]值，每次构建唯一
+        // hash: true, // true | false, 插入的js文件src后面增加?[hash]值，每次构建唯一
         minify: {
             collapseWhitespace: true,
             removeComments: true
@@ -42,15 +40,10 @@ function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
             NODE_ENV: JSON.stringify(process.env.NODE_ENV),
             BUILD_ENV: JSON.stringify(env)
         })
-        //避免重复的模块
-        // new webpack.optimize.DedupePlugin(),
-        /* 跳过编译时出错的代码并记录 , webpack.NoErrorsPlugin webpack4后改为webpack.NoEmitOnErrorsPlugin */
-        // new webpack.NoEmitOnErrorsPlugin(),
-        // 解决问题：webpack < 5 used to include polyfills for node.js core modules by default.
-        // new NodePolyfillPlugin()
     ]
 
-    if (env == 'local' || env == 'daily' || env == 'production-build') {
+    if (env == 'local' || env == 'production-build') {
+        // 本地构建才显示进度条
         config.push(new webpack.ProgressPlugin({ percentBy: 'entries' }))
     }
 
@@ -58,12 +51,6 @@ function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
     if (env !== 'local') {
         config.push(setHtmlPlugin(htmlEntry, env))
 
-        // console.log(jsPath)
-        // config.push(
-        //     new HtmlWebpackReplaceHost({
-        //         replaceString: env == 'local' || env == 'daily' ? '' : jsPath
-        //     })
-        // )
         config.push(
             new HtmlWebpackInlineSourcePlugin({
                 /* html-webpack-plugin, v5.5 版本

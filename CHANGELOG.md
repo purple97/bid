@@ -23,6 +23,11 @@
 -   配置 target: ['web', 'es5']， 未开启'es5' 会导致不转箭头函数等 es6 语法。
 -   参考 react-script 优化配置 https://github.com/facebook/create-react-app/blob/main/packages/react-scripts/config/webpack.config.js
 -   babel-loader 需要加载的插件都使用 require()方式加载。(v1.2.0-beta.4)
+-   1.2.0-beta.6
+    -   关闭日常构建时候的进度提示
+    -   关闭构建生成注释文件 LICENSE.txt, 需要安装 terser-webpack-plugin
+    -   去掉 html-webpack-plugin 给入口 js 添加的 hash
+    -   修改 webpack 配置，给入口文件添加“\[name\].\[contenthash:10\].js”
 
 ---
 

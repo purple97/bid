@@ -24,7 +24,7 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
             entry: {},
             output: {
                 path: path.resolve(cwdPath, output),
-                filename: '[name].js',
+                filename: '[name].[contenthash:10].js',
                 // chunkFilename: _filename
                 publicPath: isOnline ? jsPath + '/' : `./${Utils.getUserConfig.version}/`
             },
