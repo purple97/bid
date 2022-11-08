@@ -35,9 +35,9 @@ export default () => {
     let jsx, tsx, ejs, less, css, file
     let babelOptions = {
         babelrc: false,
-        // cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
-        cwd: path.resolve(__dirname, '../../'),
-        presets: [['@babel/preset-env' /* { modules: 'commonjs' } */], '@babel/preset-react'],
+        cwd: path.resolve(Utils.path.parentDir, 'node_modules'),
+        // cwd: path.resolve(__dirname, '../../'),
+        presets: [['@babel/preset-env' /* , { modules: 'commonjs' } */], '@babel/preset-react'],
         plugins: [
             [
                 'babel-plugin-react-scoped-css',
@@ -80,7 +80,7 @@ export default () => {
 
     tsx = {
         test: /\.(ts|tsx)$/,
-        // include: [dirSrc, /@bairong\//],
+        include: [dirSrc, /@bairong\//],
         use: [
             {
                 loader: 'babel-loader',

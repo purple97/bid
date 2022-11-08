@@ -1,5 +1,26 @@
 ## 更新日志
 
+## v1.2.1
+- 排查问题：
+```
+Module parse failed: Unexpected token (3:19)
+You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders
+| import React from 'react';
+|
+> const Lazy = (props: any) => {
+|     console.log(props);
+|     return <div>Lazy Component!!!</div>;
+```
+- 从提示看是缺少ts-loader，实际上：
+    ```
+        const tsx = {
+            test: /\.(ts|tsx)$/,
+    +++     include: [dirSrc, /@bairong\//],  // 这行
+        }
+    ```
+- 设置以上配置可以解决， 无从下手定位该问题;
+
+
 ## v1.2.0
 
 -   webpack 升级到 5.68.x 版本
