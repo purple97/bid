@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.2.0",
+    "version": "1.3.0-beta.1",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
@@ -26,9 +26,13 @@
     "dependencies": {
         "@babel/cli": "^7.10.3",
         "@babel/core": "^7.11.1",
+        "@babel/plugin-proposal-async-do-expressions": "^7.18.6",
         "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@babel/plugin-proposal-class-static-block": "^7.17.6",
         "@babel/plugin-proposal-decorators": "7.12.1",
+        "@babel/plugin-proposal-do-expressions": "^7.18.6",
+        "@babel/plugin-proposal-export-default-from": "^7.18.10",
+        "@babel/plugin-proposal-function-bind": "^7.18.9",
         "@babel/plugin-proposal-nullish-coalescing-operator": "^7.12.1",
         "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
         "@babel/plugin-proposal-optional-chaining": "^7.12.1",

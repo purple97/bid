@@ -1,5 +1,15 @@
 ## 更新日志
 
+## v1.3.0
+- 【注意】提案中的新语法，目前还是个beta版本，请谨慎使用。
+- 增加babel-plugin-xxxx，支持一些新的语法
+   - Babel TC39 提案 https://babel.dev/docs/en/babel-plugin-proposal-async-do-expressions
+- @babel/plugin-proposal-async-do-expressions // 异步的 do表达式
+- @babel/plugin-proposal-do-expressions , //do 表达式
+- @babel/plugin-proposal-export-default-from // export xx from 'xx'
+- @babel/plugin-proposal-function-bind // 函数绑定语法糖：双冒号
+
+
 ## v1.2.1
 - 排查问题：
 ```
