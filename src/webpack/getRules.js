@@ -49,7 +49,11 @@ export default () => {
             '@babel/plugin-proposal-optional-chaining', // 可选链
             '@babel/plugin-proposal-nullish-coalescing-operator', // 双问号
             '@babel/plugin-proposal-class-static-block', // 静态块
-            '@babel/plugin-proposal-class-properties',
+            // '@babel/plugin-proposal-async-do-expressions', // 异步的 do表达式
+            // '@babel/plugin-proposal-do-expressions', //do 表达式
+            '@babel/plugin-proposal-export-default-from', // export xx from 'xx'
+            // '@babel/plugin-proposal-function-bind', // 函数绑定语法糖：双冒号
+            '@babel/plugin-proposal-class-properties', // 类属性
             '@babel/plugin-proposal-object-rest-spread',
             'babel-plugin-add-module-exports',
             [
