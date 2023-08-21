@@ -1,5 +1,9 @@
 ## 更新日志
 
+## v1.2.3
+- 解决autoGetEntry只返回index.js的问题， 需要兼容.ts|.tsx|.js|.jsx
+
+
 ## v1.2.1
 - 排查问题：
 ```
