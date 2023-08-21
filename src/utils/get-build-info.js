@@ -11,7 +11,7 @@ function insetVersionByJS(pathname, version) {
 
 function insetVersionByHTML(pathname, version) {
     let v = version ? "/" + version : '';
-    return pathname.replace(htmlre, `${v}/index.$1`);
+    return pathname.replace(htmlre, `${v}/index`);
 }
 
 export const autoGetEntry = (version, devFilePath) => {
@@ -58,15 +58,17 @@ export const autoGetHtml = (version, devFilePath) => {
             } else if (htmlre.test(pathname)) {
                 let relFileName = './src/' + pathname.split('/src/')[1];
                 html.originList.push(relFileName);
-                let v = version ? version + '/' : '';
-                let relFileKey = 'src/' + pathname.split('/src/')[1].split('index.html')[0] + v + 'index';
-                let tmpJS = relFileName.replace(htmlre, '');
-                let exists = fs.existsSync(path.join(process.cwd(), tmpJS));
-                if (exists) {
-                    html.jsEntry[relFileKey] = tmpJS;
-                } else {
-                    html.jsEntry[relFileKey] = false;
-                }
+                // let v = version ? version + '/' : '';
+                let relFileKey = insetVersionByHTML(pathname, version)
+                relFileKey = 'src/' + relFileKey.split('/src/')[1].replace(htmlre, '/index');
+                let tmpJS = relFileName.replace(htmlre, '/index');
+                html.jsEntry[relFileKey] = tmpJS;
+                // let exists = fs.existsSync(path.join(process.cwd(), tmpJS));
+                // if (exists) {
+                //     html.jsEntry[relFileKey] = tmpJS;
+                // } else {
+                //     html.jsEntry[relFileKey] = false;
+                // }
                 html.keys.push(relFileKey);
             }
         });
