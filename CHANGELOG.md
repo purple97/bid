@@ -4,6 +4,24 @@
 
 -   增加一些第三方库 mjs 的支持
 
+## v1.2.3
+
+-   解决 autoGetEntry 只返回 index.js 的问题， 需要兼容.ts|.tsx|.js|.jsx
+-   修改：src/utils/get-build-info.js
+-   输出 build.json 格式：
+
+```json
+{
+    "htmlEntry": ["./src/p/react-redux/index.html", "./src/p/react-test/index.html"],
+    "jsEntry": {
+        "src/p/react-redux/4.2.3/index": "./src/p/react-redux/index",
+        "src/p/react-test/4.2.3/index": "./src/p/react-test/index"
+    },
+    "selectedEntry": ["src/p/react-redux/4.2.3/index", "src/p/react-test/4.2.3/index"]
+    //...其他内容
+}
+```
+
 ## v1.2.1
 
 -   排查问题：
