@@ -70,7 +70,7 @@ export default () => {
         cacheDirectory: true
     }
     jsx = {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|mjs)$/,
         // 部分较新的js库会使用一些es6特新，需要加入到编译中，例如: three.js
         include: [dirSrc, /@bairong\//],
         // exclude: /node_modules/,
