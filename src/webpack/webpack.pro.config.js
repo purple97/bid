@@ -26,7 +26,7 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
                 path: path.resolve(cwdPath, output),
                 filename: '[name].[contenthash:10].js',
                 // chunkFilename: _filename
-                publicPath: isOnline ? jsPath + '/' : `./${Utils.getUserConfig.version}/`
+                publicPath: isOnline ? jsPath + path.sep : `./${Utils.getUserConfig.version}/`
             },
             //打包多文件和公共模块配置, dev环境下没有使用html-webpack-plugin，无法自动引入分离的包
             optimization: optimization, // webpack5下部分被废弃

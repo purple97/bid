@@ -72,7 +72,7 @@ const Lint = async () => {
     answers.selectedEntry.forEach(path => {
         // const dirName = path.replace(/[.\w]*\/index$/, '**/*')
         // dirPaths.push(dirName + '.js*', dirName + '.ts*')
-        const dirName = path.replace(/[.\w]*\/index$/, '/')
+        const dirName = path.replace(/[.\w]*\/index$/, path.sep)
         dirPaths.push(dirName)
     })
     try {

@@ -18,7 +18,7 @@ const WebpackConfig = (parentDirPath, option = {}) => (outputPath, filePath) => 
                 path: path.resolve(cwdPath, output),
                 filename: '[name].js',
                 chunkFilename: '[id].js', //
-                publicPath: '/'
+                publicPath: path.sep
             },
             resolve: {
                 modules: [path.join(parentDirPath, 'node_modules')]

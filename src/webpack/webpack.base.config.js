@@ -6,7 +6,7 @@ import externalsConfig from './externals'
 
 const cwdPath = process.cwd() // 工程项目root path
 
-export default function(parentDirPath) {
+export default function (parentDirPath) {
     // Utils.setParentDir(parentDirPath) //设置br-bid所在目录， 方便babel-loader查找相关依赖
     //
     return {
@@ -17,7 +17,7 @@ export default function(parentDirPath) {
             path: path.resolve(cwdPath, './build'),
             filename: '[name].js',
             chunkFilename: '[id].[contenthash:10].js', // hash | chunkhash | contenthash
-            publicPath: './'
+            publicPath: '.' + path.sep
         },
         resolveLoader: {
             modules: [
