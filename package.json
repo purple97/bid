@@ -1,6 +1,6 @@
 {
     "name": "bid-base",
-    "version": "1.2.5-beta.1",
+    "version": "1.2.5-beta.2",
     "description": "fed tools",
     "main": "lib/index.js",
     "scripts": {
@@ -91,5 +91,9 @@
     },
     "peerDependencies": {
         "webpack": ">= 5.x"
-    }
+    },
+    "maintainers": [
+        "dezhao.chen",
+        "dragonfly9977"
+    ]
 }

@@ -20,10 +20,8 @@ const projectGenerator = (args, callback) => {
         process.exit(1);
     }
 
-    fs.exists(path.join(dirname, './src'), exists => {
+    /* fs.exists(path.join(dirname, './src'), exists => {
         if (exists) {
-            console.log(colors.yellow(`${path.join(dirname, './src')}目录已存在，初始化终止...`));
-            process.exit(1);
         }
         fse.copy(targetPath, dirname, {}, () => {
             console.log(colors.green('目录结构创建成功！'));
@@ -34,6 +32,24 @@ const projectGenerator = (args, callback) => {
         fse.copy(commonFilePath, dirname, {}, () => {
             console.log(colors.green('配置文件创建成功！'));
         });
+    }); */
+
+    // fs.exists弃用，改为 fs.access 版本
+    fs.access(dirname, fs.constants.F_OK, (err) => {
+        if (err) {
+            fse.copy(targetPath, dirname, {}, () => {
+                console.log(colors.green('目录结构创建成功！'));
+                if (typeof callback == 'function') {
+                    callback();
+                }
+            });
+            fse.copy(commonFilePath, dirname, {}, () => {
+                console.log(colors.green('配置文件创建成功！'));
+            });
+        } else {
+            console.log(colors.yellow(`${path.join(dirname, './src')}目录已存在，初始化终止...`));
+            process.exit(1);
+        }
     });
 };
 

@@ -1,16 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 
-const htmlre = new RegExp(/\/index\.(htm|html)$/);
-const jsre = new RegExp(/\/index\.(js|jsx|ts|tsx)$/);
+const htmlre = new RegExp(/index\.(htm|html)$/);
+const jsre = new RegExp(/index\.(js|jsx|ts|tsx)$/);
 
 function insetVersionByJS(pathname, version) {
-    let v = version ? "/" + version : '';
+    let v = version ? version : '';
     return pathname.replace(jsre, `${v}/index`);
 }
 
 function insetVersionByHTML(pathname, version) {
-    let v = version ? "/" + version : '';
+    let v = version ? version : '';
     return pathname.replace(htmlre, `${v}/index`);
 }
 
@@ -24,7 +24,7 @@ export const autoGetEntry = (version, devFilePath) => {
             if (fs.statSync(pathname).isDirectory()) {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
-                let relFileName = './src/' + pathname.split('/src/')[1];
+                let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
                 // let v = version ? version + '/' : '';
                 // let relFileKey = 'src/' + pathname.split('/src/')[1].split('index.js')[0] + v + 'index';
                 const relFileKey = insetVersionByJS(pathname, version);
@@ -56,11 +56,11 @@ export const autoGetHtml = (version, devFilePath) => {
             if (fs.statSync(pathname).isDirectory()) {
                 getJsHtml(pathname);
             } else if (htmlre.test(pathname)) {
-                let relFileName = './src/' + pathname.split('/src/')[1];
+                let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
                 html.originList.push(relFileName);
                 // let v = version ? version + '/' : '';
                 let relFileKey = insetVersionByHTML(pathname, version)
-                relFileKey = 'src/' + relFileKey.split('/src/')[1].replace(htmlre, '/index');
+                relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
                 let tmpJS = relFileName.replace(htmlre, '/index');
                 html.jsEntry[relFileKey] = tmpJS;
                 // let exists = fs.existsSync(path.join(process.cwd(), tmpJS));
