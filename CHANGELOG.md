@@ -4,6 +4,7 @@
 
 - 处理window系统下 路径问题；
 - 补充webpack配置的单测
+- window下获取IP信息需要通过 os.networkInterfaces().WLAN 获取
 
 ## v1.2.4
 

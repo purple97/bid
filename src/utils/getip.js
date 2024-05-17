@@ -4,7 +4,7 @@ const getIPAddress = () => {
         // hostName,
         en;
     // hostName = os.hostname();
-    en = os.networkInterfaces().eth0 || os.networkInterfaces().en0;
+    en = os.networkInterfaces().eth0 || os.networkInterfaces().en0 || os.networkInterfaces().WLAN;
     for (let i = 0; i < en.length; i++) {
         if (en[i].family == 'IPv4') {
             IPv4 = en[i].address;
