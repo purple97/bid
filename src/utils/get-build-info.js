@@ -17,7 +17,6 @@ function insetVersionByHTML(pathname, version) {
 export const autoGetEntry = (version, devFilePath) => {
     // 传递config.json的version字段，则自动在输出位置增加@version匹配。否则忽略@version
     let entry = {};
-    let isInit = fs.existsSync(devFilePath);
     let getJsEntry = dir => {
         fs.readdirSync(dir).forEach(file => {
             let pathname = path.join(dir, file);
@@ -25,7 +24,7 @@ export const autoGetEntry = (version, devFilePath) => {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
                 // let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
-                let relFileName = '.' + pathname
+                let relFileName = `.${path.sep}${pathname}`;
                 // let v = version ? version + '/' : '';
                 // let relFileKey = 'src/' + pathname.split('/src/')[1].split('index.js')[0] + v + 'index';
                 const relFileKey = insetVersionByJS(pathname, version);
@@ -34,11 +33,7 @@ export const autoGetEntry = (version, devFilePath) => {
         });
         return entry;
     };
-    if (isInit) {
-        return getJsEntry(devFilePath);
-    } else {
-        return {};
-    }
+    return getJsEntry(devFilePath);
 };
 
 export const autoGetHtml = (version, devFilePath) => {
@@ -48,7 +43,6 @@ export const autoGetHtml = (version, devFilePath) => {
         jsEntry: {},
         originList: []
     };
-    let isInit = fs.existsSync(devFilePath);
     let getJsHtml = dir => {
         // 递归遍历约定的目录结构，设置jsEntry配置
         fs.readdirSync(dir).forEach(file => {
@@ -58,35 +52,38 @@ export const autoGetHtml = (version, devFilePath) => {
                 getJsHtml(pathname);
             } else if (htmlre.test(pathname)) {
                 // let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
-                let relFileName = '.' + pathname;
-                html.originList.push(relFileName);
+                let relFileName = pathname
+                html.originList.push(`.${path.sep}${relFileName}`);
                 // let v = version ? version + '/' : '';
                 let relFileKey = insetVersionByHTML(pathname, version)
                 // relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
                 const relFileKeyPaths = relFileKey.split(path.sep);
-                relFileKey = path.dirname(path.join(...relFileKeyPaths)) + '/index';
-
-                let tmpJS = relFileName.replace(htmlre, '/index');
-                html.jsEntry[relFileKey] = tmpJS;
+                relFileKey = path.join(path.dirname(path.join(...relFileKeyPaths)), './index');
+                let tmpJS = path.join(path.dirname(relFileName), './index');
+                // console.log(relFileName, relFileKey, tmpJS);
+                html.jsEntry[relFileKey] = `.${path.sep}${tmpJS}`;
                 html.keys.push(relFileKey);
             }
         });
     };
-    if (isInit) {
-        // 如果该项目路径已经进行了bid init初始化(拥有约定目录结构)
-        getJsHtml(devFilePath);
-        return html;
-    } else {
-        return {};
-    }
+    getJsHtml(devFilePath);
+    return html;
 };
 
 const getBuildInfo = version => {
     let devFilePath = path.join(process.cwd(), './src/p');
-    return {
-        autoGetEntry: autoGetEntry(version, devFilePath),
-        autoGetHtml: autoGetHtml(version, devFilePath)
-    };
+    let isInit = fs.existsSync(devFilePath);
+    if (isInit) {
+        return {
+            autoGetEntry: autoGetEntry(version, devFilePath),
+            autoGetHtml: autoGetHtml(version, devFilePath)
+        };
+    } else {
+        return {
+            autoGetEntry: {},
+            autoGetHtml: {}
+        }
+    }
 };
 
 export default getBuildInfo;

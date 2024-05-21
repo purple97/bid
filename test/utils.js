@@ -1,6 +1,6 @@
 const path = require('path')
 const assert = require('assert');
-const { autoGetHtml } = require('../lib/utils/get-build-info');
+const { autoGetHtml, autoGetEntry } = require('../lib/utils/get-build-info');
 const compareVersion = require('../lib/utils/compare-version')
 const getAlias = require('../lib/utils/get-alias')
 const requireFileToJson = require('../lib/utils/require-file-to-json')
@@ -10,10 +10,20 @@ const npm = require('npm')
 describe('src/utils/', function () {
     describe('get-build-info', function () {
         const version = '1.0.0';
-        const devFilePath = path.join(process.cwd(), './src/utils');
+        const devFilePath = path.join('./test/template');
+        // console.log('devFilePath', devFilePath);
         it('#autoGetHtml()', function () {
             const data = autoGetHtml(version, devFilePath)
-            assert.equal(JSON.stringify(data), JSON.stringify({ keys: [], jsEntry: {}, originList: [] }));
+            assert.equal(JSON.stringify(data.keys), JSON.stringify([`${devFilePath}/src/p/index/1.0.0/index`]));
+            assert.equal(JSON.stringify(data.jsEntry), JSON.stringify({ [`${devFilePath}/src/p/index/1.0.0/index`]: `./${devFilePath}/src/p/index/index` }));
+            assert.equal(JSON.stringify(data.originList), JSON.stringify([`./${devFilePath}/src/p/index/index.html`]));
+            // console.log(data)
+        });
+
+        it('#autoGetEntry()', function () {
+            const data = autoGetEntry(version, devFilePath)
+            assert.equal(JSON.stringify(data), JSON.stringify({ [`${devFilePath}/src/p/index/1.0.0/index`]: `./${devFilePath}/src/p/index/index.js` }));
+            // console.log(data)
         });
     })
 

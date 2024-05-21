@@ -9,7 +9,7 @@ const webpackBaseConfig = require('../../lib/webpack/webpack.base.config.js')
 describe('webpack.base.config.js', () => {
     const parentDirPath = path.resolve(__dirname, '../src/index.js')
     const config = webpackBaseConfig(parentDirPath)
-    console.log(config.module.rules);
+    // console.log(config.module.rules);
 
     it('#config.output', function () {
         assert.equal(config.output.path, path.resolve(process.cwd(), './build'))
