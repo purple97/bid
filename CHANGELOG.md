@@ -5,6 +5,12 @@
 - 处理window系统下 路径问题；
 - 补充webpack配置的单测
 - window下获取IP信息需要通过 os.networkInterfaces().WLAN 获取
+- 修改路径拼接方式(window下报错)
+
+```
+- let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
++ let relFileName = '.' + pathname;
+```
 
 ## v1.2.4
 
