@@ -62,15 +62,12 @@ export const autoGetHtml = (version, devFilePath) => {
                 html.originList.push(relFileName);
                 // let v = version ? version + '/' : '';
                 let relFileKey = insetVersionByHTML(pathname, version)
-                relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
+                // relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
+                const relFileKeyPaths = relFileKey.split(path.sep);
+                relFileKey = path.dirname(path.join(...relFileKeyPaths)) + '/index'
+
                 let tmpJS = relFileName.replace(htmlre, '/index');
                 html.jsEntry[relFileKey] = tmpJS;
-                // let exists = fs.existsSync(path.join(process.cwd(), tmpJS));
-                // if (exists) {
-                //     html.jsEntry[relFileKey] = tmpJS;
-                // } else {
-                //     html.jsEntry[relFileKey] = false;
-                // }
                 html.keys.push(relFileKey);
             }
         });
