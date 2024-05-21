@@ -10,6 +10,10 @@
 ```
 - let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
 + let relFileName = '.' + pathname;
+
+- relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
++ const relFileKeyPaths = relFileKey.split(path.sep);
++ relFileKey = path.dirname(path.join(...relFileKeyPaths)) + '/index';
 ```
 
 ## v1.2.4

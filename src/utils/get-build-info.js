@@ -64,7 +64,7 @@ export const autoGetHtml = (version, devFilePath) => {
                 let relFileKey = insetVersionByHTML(pathname, version)
                 // relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
                 const relFileKeyPaths = relFileKey.split(path.sep);
-                relFileKey = path.dirname(path.join(...relFileKeyPaths)) + '/index'
+                relFileKey = path.dirname(path.join(...relFileKeyPaths)) + '/index';
 
                 let tmpJS = relFileName.replace(htmlre, '/index');
                 html.jsEntry[relFileKey] = tmpJS;
