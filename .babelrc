@@ -4,14 +4,19 @@
             "@babel/env",
             {
                 "targets": {
-                    "node": "8.0"
+                    "node": "12.0"
                 }
             }
         ]
     ],
     "plugins": [
         "@babel/plugin-transform-runtime",
-        ["@babel/plugin-proposal-class-properties", { "loose": false }],
+        [
+            "@babel/plugin-proposal-class-properties",
+            {
+                "loose": false
+            }
+        ],
         "@babel/plugin-proposal-object-rest-spread",
         "babel-plugin-add-module-exports"
     ]
