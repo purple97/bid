@@ -10,19 +10,19 @@ const npm = require('npm')
 describe('src/utils/', function () {
     describe('get-build-info', function () {
         const version = '1.0.0';
-        const devFilePath = path.join('./test/template');
+        const devFilePath = path.join('./test/template/');
         // console.log('devFilePath', devFilePath);
         it('#autoGetHtml()', function () {
             const data = autoGetHtml(version, devFilePath)
-            assert.equal(JSON.stringify(data.keys), JSON.stringify([`${devFilePath}/src/p/index/1.0.0/index`]));
-            assert.equal(JSON.stringify(data.jsEntry), JSON.stringify({ [`${devFilePath}/src/p/index/1.0.0/index`]: `./${devFilePath}/src/p/index/index` }));
-            assert.equal(JSON.stringify(data.originList), JSON.stringify([`./${devFilePath}/src/p/index/index.html`]));
+            assert.equal(JSON.stringify(data.keys), JSON.stringify([`src/p/index/1.0.0/index`]));
+            assert.equal(JSON.stringify(data.jsEntry), JSON.stringify({ [`src/p/index/1.0.0/index`]: `./src/p/index/index` }));
+            assert.equal(JSON.stringify(data.originList), JSON.stringify([`./src/p/index/index.html`]));
             // console.log(data)
         });
 
         it('#autoGetEntry()', function () {
             const data = autoGetEntry(version, devFilePath)
-            assert.equal(JSON.stringify(data), JSON.stringify({ [`${devFilePath}/src/p/index/1.0.0/index`]: `./${devFilePath}/src/p/index/index.js` }));
+            assert.equal(JSON.stringify(data), JSON.stringify({ [`src/p/index/1.0.0/index`]: `./src/p/index/index.js` }));
             // console.log(data)
         });
     })

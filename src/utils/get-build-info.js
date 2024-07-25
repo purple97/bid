@@ -3,6 +3,7 @@ import path from 'path';
 
 const htmlre = new RegExp(/index\.(htm|html)$/);
 const jsre = new RegExp(/index\.(js|jsx|ts|tsx)$/);
+const rx_src = new RegExp(`${path.sep}src${path.sep}`);
 
 function insetVersionByJS(pathname, version) {
     let v = version ? version : '';
@@ -23,12 +24,11 @@ export const autoGetEntry = (version, devFilePath) => {
             if (fs.statSync(pathname).isDirectory()) {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
-                // let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
-                let relFileName = `.${path.sep}${pathname}`;
+                let relFileName = path.join(`.${path.sep}src${path.sep}`, pathname.split(rx_src)[1]);
+                // let relFileName = `.${path.sep}${pathname}`;
                 // let v = version ? version + '/' : '';
-                // let relFileKey = 'src/' + pathname.split('/src/')[1].split('index.js')[0] + v + 'index';
-                const relFileKey = insetVersionByJS(pathname, version);
-                entry[relFileKey] = relFileName;
+                const relFileKey = insetVersionByJS(relFileName, version);
+                entry[relFileKey] = '.' + path.sep + relFileName;
             }
         });
         return entry;
@@ -47,15 +47,12 @@ export const autoGetHtml = (version, devFilePath) => {
         // 递归遍历约定的目录结构，设置jsEntry配置
         fs.readdirSync(dir).forEach(file => {
             let pathname = path.join(dir, file);
-
             if (fs.statSync(pathname).isDirectory()) {
                 getJsHtml(pathname);
             } else if (htmlre.test(pathname)) {
-                // let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
-                let relFileName = pathname
+                let relFileName = path.join(`.${path.sep}src${path.sep}`, pathname.split(rx_src)[1]);
                 html.originList.push(`.${path.sep}${relFileName}`);
-                // let v = version ? version + '/' : '';
-                let relFileKey = insetVersionByHTML(pathname, version)
+                let relFileKey = insetVersionByHTML(relFileName, version)
                 // relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
                 const relFileKeyPaths = relFileKey.split(path.sep);
                 relFileKey = path.join(path.dirname(path.join(...relFileKeyPaths)), './index');
