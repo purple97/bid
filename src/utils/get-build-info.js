@@ -3,7 +3,7 @@ import path from 'path';
 
 const htmlre = new RegExp(/index\.(htm|html)$/);
 const jsre = new RegExp(/index\.(js|jsx|ts|tsx)$/);
-const rx_src = new RegExp(`${path.sep}src${path.sep}`);
+const rx_src = new RegExp(/(\/\\)src(\/\\)/);
 
 function insetVersionByJS(pathname, version) {
     let v = version ? version : '';
