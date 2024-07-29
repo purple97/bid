@@ -3,7 +3,7 @@ import path from 'path';
 
 const htmlre = new RegExp(/index\.(htm|html)$/);
 const jsre = new RegExp(/index\.(js|jsx|ts|tsx)$/);
-const rx_src = new RegExp(/(\/\\)src(\/\\)/);
+const rx_src = new RegExp(/[\/\\]src[\/|\\]/);
 
 function insetVersionByJS(pathname, version) {
     let v = version ? version : '';
@@ -25,8 +25,6 @@ export const autoGetEntry = (version, devFilePath) => {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
                 let relFileName = path.join(`.${path.sep}src${path.sep}`, pathname.split(rx_src)[1]);
-                // let relFileName = `.${path.sep}${pathname}`;
-                // let v = version ? version + '/' : '';
                 const relFileKey = insetVersionByJS(relFileName, version);
                 entry[relFileKey] = '.' + path.sep + relFileName;
             }
@@ -53,11 +51,9 @@ export const autoGetHtml = (version, devFilePath) => {
                 let relFileName = path.join(`.${path.sep}src${path.sep}`, pathname.split(rx_src)[1]);
                 html.originList.push(`.${path.sep}${relFileName}`);
                 let relFileKey = insetVersionByHTML(relFileName, version)
-                // relFileKey = path.join('src/', relFileKey.split(/\/src\//)[1].replace(htmlre, '/index'));
                 const relFileKeyPaths = relFileKey.split(path.sep);
                 relFileKey = path.join(path.dirname(path.join(...relFileKeyPaths)), './index');
                 let tmpJS = path.join(path.dirname(relFileName), './index');
-                // console.log(relFileName, relFileKey, tmpJS);
                 html.jsEntry[relFileKey] = `.${path.sep}${tmpJS}`;
                 html.keys.push(relFileKey);
             }
