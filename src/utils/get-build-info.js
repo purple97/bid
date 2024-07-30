@@ -25,7 +25,7 @@ export const autoGetEntry = (version, devFilePath) => {
             if (fs.statSync(pathname).isDirectory()) {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
-                let relFileName = path.join(`.${path.sep}src${path.sep}`, pathname.split(rx_src)[1]);
+                let relFileName = path.join('./src/', pathname.split(rx_src)[1]);
                 const relFileKey = insetVersionByJS(relFileName, version);
                 entry[relFileKey] = '.' + path.sep + relFileName;
             }
@@ -49,7 +49,7 @@ export const autoGetHtml = (version, devFilePath) => {
             if (fs.statSync(pathname).isDirectory()) {
                 getJsHtml(pathname);
             } else if (htmlre.test(pathname)) {
-                let relFileName = path.join(`.${path.sep}src${path.sep}`, pathname.split(rx_src)[1]);
+                let relFileName = path.join('./src/', pathname.split(rx_src)[1]);
                 html.originList.push(`.${path.sep}${relFileName}`);
                 let relFileKey = insetVersionByHTML(relFileName, version)
                 const relFileKeyPaths = relFileKey.split(path.sep);
