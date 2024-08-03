@@ -21,11 +21,11 @@ export const autoGetEntry = (version, devFilePath) => {
     let entry = {};
     const getJsEntry = dir => {
         fs.readdirSync(dir).forEach(file => {
-            const pathname = path.join(dir, file);
+            const pathname = path.posix.join(dir, file);
             if (fs.statSync(pathname).isDirectory()) {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
-                const relFileName = path.join('./src/', pathname.split(rx_src)[1]);
+                const relFileName = path.posix.join('./src/', pathname.split(rx_src)[1]);
                 const relFileKey = insetVersionByJS(relFileName, version);
                 entry[relFileKey] = './' + relFileName;
             }
@@ -45,16 +45,16 @@ export const autoGetHtml = (version, devFilePath) => {
     const getJsHtml = dir => {
         // 递归遍历约定的目录结构，设置jsEntry配置
         fs.readdirSync(dir).forEach(file => {
-            let pathname = path.join(dir, file);
+            let pathname = path.posix.join(dir, file);
             if (fs.statSync(pathname).isDirectory()) {
                 getJsHtml(pathname);
             } else if (htmlre.test(pathname)) {
-                let relFileName = path.join('./src/', pathname.split(rx_src)[1]);
+                let relFileName = path.posix.join('./src/', pathname.split(rx_src)[1]);
                 html.originList.push(`./${relFileName}`);
                 let relFileKey = insetVersionByHTML(relFileName, version)
                 const relFileKeyPaths = relFileKey.split('/');
-                relFileKey = path.join(path.dirname(path.join(...relFileKeyPaths)), './index');
-                const tmpJS = path.join(path.dirname(relFileName), './index');
+                relFileKey = path.posix.join(path.posix.dirname(path.posix.join(...relFileKeyPaths)), './index');
+                const tmpJS = path.posix.join(path.posix.dirname(relFileName), './index');
                 html.jsEntry[relFileKey] = `./${tmpJS}`;
                 html.keys.push(relFileKey);
             }
@@ -65,7 +65,7 @@ export const autoGetHtml = (version, devFilePath) => {
 };
 
 const getBuildInfo = version => {
-    let devFilePath = path.join(process.cwd(), './src/p');
+    let devFilePath = path.posix.join(process.cwd(), './src/p');
     let isInit = fs.existsSync(devFilePath);
     if (isInit) {
         return {
