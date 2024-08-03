@@ -43,8 +43,8 @@ describe('src/utils/', function () {
             };
             const alias = getAlias(userAlias);
             assert.equal(JSON.stringify(alias), JSON.stringify({
-                '@br': path.join(process.cwd(), './src/c/'),
-                '@src': path.join(process.cwd(), './src/'),
+                '@br': path.resolve('./src/c/'),
+                '@src': path.resolve('./src/'),
                 '@': './src/p/',
             }));
         });

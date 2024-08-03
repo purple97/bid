@@ -3,7 +3,7 @@ import path from 'path';
 
 const htmlre = new RegExp(/index\.(htm|html)$/);
 const jsre = new RegExp(/index\.(js|jsx|ts|tsx)$/);
-const rx_src = new RegExp(/[\/\\]src[\/|\\]/);
+const rx_src = new RegExp(/[\/\\]src[\/\\]/);
 
 
 function insetVersionByJS(pathname, version) {
@@ -19,15 +19,15 @@ function insetVersionByHTML(pathname, version) {
 export const autoGetEntry = (version, devFilePath) => {
     // 传递config.json的version字段，则自动在输出位置增加@version匹配。否则忽略@version
     let entry = {};
-    let getJsEntry = dir => {
+    const getJsEntry = dir => {
         fs.readdirSync(dir).forEach(file => {
-            let pathname = path.join(dir, file);
+            const pathname = path.join(dir, file);
             if (fs.statSync(pathname).isDirectory()) {
                 getJsEntry(pathname);
             } else if (jsre.test(pathname)) {
-                let relFileName = path.join('./src/', pathname.split(rx_src)[1]);
+                const relFileName = path.join('./src/', pathname.split(rx_src)[1]);
                 const relFileKey = insetVersionByJS(relFileName, version);
-                entry[relFileKey] = '.' + path.sep + relFileName;
+                entry[relFileKey] = './' + relFileName;
             }
         });
         return entry;
@@ -42,7 +42,7 @@ export const autoGetHtml = (version, devFilePath) => {
         jsEntry: {},
         originList: []
     };
-    let getJsHtml = dir => {
+    const getJsHtml = dir => {
         // 递归遍历约定的目录结构，设置jsEntry配置
         fs.readdirSync(dir).forEach(file => {
             let pathname = path.join(dir, file);
@@ -50,12 +50,12 @@ export const autoGetHtml = (version, devFilePath) => {
                 getJsHtml(pathname);
             } else if (htmlre.test(pathname)) {
                 let relFileName = path.join('./src/', pathname.split(rx_src)[1]);
-                html.originList.push(`.${path.sep}${relFileName}`);
+                html.originList.push(`./${relFileName}`);
                 let relFileKey = insetVersionByHTML(relFileName, version)
-                const relFileKeyPaths = relFileKey.split(path.sep);
+                const relFileKeyPaths = relFileKey.split('/');
                 relFileKey = path.join(path.dirname(path.join(...relFileKeyPaths)), './index');
-                let tmpJS = path.join(path.dirname(relFileName), './index');
-                html.jsEntry[relFileKey] = `.${path.sep}${tmpJS}`;
+                const tmpJS = path.join(path.dirname(relFileName), './index');
+                html.jsEntry[relFileKey] = `./${tmpJS}`;
                 html.keys.push(relFileKey);
             }
         });

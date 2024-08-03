@@ -32,8 +32,8 @@ function setHtmlPlugin(file, env) {
 }
 
 function getPlugins({ htmlEntry, env = 'daily', cdnhost }) {
-    const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
-    const jsPath = jsHost + path.dirname(`${htmlEntry.replace(/^\.\//, '')}`) + `/${Utils.getUserConfig.version}/`
+    // const jsHost = `${cdnhost || Utils.getUserConfig.cdnhost}/${Utils.getUserConfig.appName}/`
+    // const jsPath = jsHost + path.dirname(`${htmlEntry.replace(/^\.\//, '')}`) + `/${Utils.getUserConfig.version}/`
 
     let config = [
         new webpack.DefinePlugin({

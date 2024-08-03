@@ -6,8 +6,8 @@ const getAlias = userAlias => {
      */
     let alias = {
         // 别名
-        '@br': path.join(process.cwd(), './src/c/'),
-        '@src': path.join(process.cwd(), './src/')
+        '@br': path.resolve('./src/c/'),
+        '@src': path.resolve('./src/')
     }
     // eslint-disable-next-line
     // for (let aliasName in userAlias) {

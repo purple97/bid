@@ -38,7 +38,7 @@ describe('webpack.base.config.js', () => {
     })
 
     it('#config.resolve.alias', function () {
-        assert.equal(config.resolve.alias['@br'], path.join(process.cwd(), './src/c/'));
-        assert.equal(config.resolve.alias['@src'], path.join(process.cwd(), './src/'));
+        assert.equal(config.resolve.alias['@br'], path.resolve('./src/c/'));
+        assert.equal(config.resolve.alias['@src'], path.resolve('./src/'));
     });
 })

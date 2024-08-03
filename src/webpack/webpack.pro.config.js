@@ -1,7 +1,7 @@
 import path from 'path'
 import Utils from '../utils/'
 import pluginsConfig from './plugins'
-import performance from './performance'
+// import performance from './performance'
 import optimization from './optimization'
 import { getExternals } from './externals'
 import { merge } from 'webpack-merge'
@@ -23,7 +23,8 @@ export default (parentDirPath, option = {}) => (outputPath, buildConfig) => {
             // performance: performance,
             entry: {},
             output: {
-                path: path.resolve(cwdPath, output),
+                // path: path.resolve(cwdPath, output),
+                path: output,
                 filename: '[name].[contenthash:10].js',
                 // chunkFilename: _filename
                 publicPath: isOnline ? jsPath + path.sep : `./${Utils.getUserConfig.version}/`

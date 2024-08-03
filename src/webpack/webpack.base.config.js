@@ -1,8 +1,8 @@
 import path from 'path'
-import Utils from '../utils/'
+// import Utils from '../utils/'
 import moduleConfig from './module'
 import resolveConfig from './resolve'
-import externalsConfig from './externals'
+// import externalsConfig from './externals'
 
 const cwdPath = process.cwd() // 工程项目root path
 

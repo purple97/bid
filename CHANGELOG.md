@@ -6,6 +6,8 @@
 - 补充webpack配置的单测
 - window下获取IP信息需要通过 os.networkInterfaces().WLAN 获取
 - 修改路径拼接方式(window下报错)
+  - 通过 path.posix
+    统一路径方式，外部使用的时候再根据系统转对应的路径格式，这样保障输出的build.json路径格式一致
 
 ```
 - let relFileName = path.join('./src/', pathname.split(/\/src\//)[1]);
