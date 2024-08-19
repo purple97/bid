@@ -1,5 +1,11 @@
 ## 更新日志
 
+## v1.2.6
+
+- 升级一下依赖， cheerio破坏性更新导致
+- "cheerio": "^1.0.0",
+- "webpack-plugin-inline-source": "1.1.1",
+
 ## v1.2.5
 
 - 处理window系统下 路径问题；
