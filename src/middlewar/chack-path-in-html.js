@@ -11,7 +11,7 @@
 import fs from 'fs';
 import path from 'path';
 import colors from 'cli-color';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 const checkHtmlFilePath = filepath => {
     let isExist = true;
